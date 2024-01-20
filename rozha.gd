@@ -3,6 +3,12 @@ extends Sprite2D
 #func _init():
 #	print("Halo")
 
+# 
+#signal health_depleted
+# var health = 10
+# ... later in code ...
+#   health_depleted.emit()
+
 var speed = 400
 var angular_speed = PI
 
