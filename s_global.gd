@@ -8,7 +8,7 @@ func _ready():
 	scene_cur = root.get_child(root.get_child_count() - 1)
 	print("started, scene: ", scene_cur)
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 func pop_scene():
@@ -16,6 +16,12 @@ func pop_scene():
 
 func push_scene(path):
 	call_deferred("_deferred_goto_scene", path)
+
+func push_scene_stub():
+	push_scene("res://s_stub.tscn")
+
+func push_scene_new_game():
+	push_scene("res://s_new_game.tscn")
 
 func _deferred_goto_scene(path):
 	scene_cur.free()
