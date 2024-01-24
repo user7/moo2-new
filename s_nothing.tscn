@@ -6,9 +6,26 @@
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_qdbm2")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.376471, 0, 0, 1)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -43.0
+offset_right = 192.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("1_djdi1")
 
 [node name="Label" type="Label" parent="VBoxContainer"]

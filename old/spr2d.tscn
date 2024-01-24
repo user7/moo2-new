@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf0rtwedsle4u"]
+
+[ext_resource type="Texture2D" uid="uid://cr1ll8s1uv4b" path="res://old/icon.svg" id="1_vacib"]
+[ext_resource type="Script" path="res://old/rozha.gd" id="2_v3oid"]
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(458, 319)
+texture = ExtResource("1_vacib")
+script = ExtResource("2_v3oid")

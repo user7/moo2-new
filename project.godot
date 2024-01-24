@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="godot"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://s_universal_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://old/icon.svg"
 
 [autoload]
 

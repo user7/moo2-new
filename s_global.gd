@@ -1,14 +1,13 @@
 extends Node
 
-var stack = ["res://s_universal_menu.tscn"]
-var cur_scene = null
+var scene_stack = ["res://s_universal_menu.tscn"]
+var scene_cur = null
 
 func _ready():
 	var root = get_tree().root
-	cur_scene = root.get_child(root.get_child_count() - 1)
-	print("started, scene: ", cur_scene)
+	scene_cur = root.get_child(root.get_child_count() - 1)
+	print("started, scene: ", scene_cur)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
@@ -19,15 +18,15 @@ func push_scene(path):
 	call_deferred("_deferred_goto_scene", path)
 
 func _deferred_goto_scene(path):
-	cur_scene.free()
+	scene_cur.free()
 	if path == null:
-		stack.pop_back()
-		if !stack:
+		scene_stack.pop_back()
+		if !scene_stack:
 			get_tree().quit()
 			return
-		path = stack[-1]
+		path = scene_stack[-1]
 	else:
-		stack.push_back(path)
-	cur_scene = ResourceLoader.load(path).instantiate()
-	get_tree().root.add_child(cur_scene)
-	get_tree().current_scene = cur_scene
+		scene_stack.push_back(path)
+	scene_cur = ResourceLoader.load(path).instantiate()
+	get_tree().root.add_child(scene_cur)
+	get_tree().current_scene = scene_cur
