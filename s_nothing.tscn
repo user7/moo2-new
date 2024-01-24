@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnuei6q2yk5tq"]
+
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_djdi1"]
+[ext_resource type="Script" path="res://s_nothing.gd" id="1_qdbm2"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_qdbm2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_djdi1")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_djdi1")
+text = "Nothing here yet, sorry.."
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_djdi1")
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
