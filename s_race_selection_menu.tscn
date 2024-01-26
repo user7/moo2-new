@@ -1,0 +1,135 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfohhp0l5ncfj"]
+
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_2skqq"]
+[ext_resource type="Texture2D" uid="uid://86vqpigmnfuj" path="res://img/race_image_13.png" id="2_iqd1y"]
+[ext_resource type="Script" path="res://s_race_selection_menu.gd" id="2_lxjt8"]
+
+[node name="RaceSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2skqq")
+script = ExtResource("2_lxjt8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -229.0
+offset_right = 256.0
+offset_bottom = 229.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Info" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Portrait" type="TextureRect" parent="HBox/Info"]
+layout_mode = 2
+texture = ExtResource("2_iqd1y")
+
+[node name="RaceStats" type="Label" parent="HBox/Info"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "racial statistics multiline label"
+autowrap_mode = 3
+
+[node name="Choice" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBox/Choice"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Select Race"
+
+[node name="Buttons" type="GridContainer" parent="HBox/Choice"]
+layout_mode = 2
+columns = 2
+
+[node name="Button1" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Alkari"
+
+[node name="Button2" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Meklars"
+
+[node name="Button3" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Bulrathi"
+
+[node name="Button4" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Mrrshan	"
+
+[node name="Button5" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Darlocks
+"
+
+[node name="Button6" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Psilons"
+
+[node name="Button7" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Elerians"
+
+[node name="Button8" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Sakkra"
+
+[node name="Button9" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Gnolams"
+
+[node name="Button10" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Silicoids"
+
+[node name="Button11" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Humans
+"
+
+[node name="Button12" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Trilarians"
+
+[node name="Button13" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Klackons"
+
+[node name="Button0" type="Button" parent="HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Custom"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -45.0
+offset_right = 86.0
+grow_vertical = 0
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

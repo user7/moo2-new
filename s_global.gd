@@ -21,7 +21,10 @@ func push_scene_stub():
 	push_scene("res://s_stub.tscn")
 
 func push_scene_new_game():
-	push_scene("res://s_new_game.tscn")
+	push_scene("res://s_new_game_menu.tscn")
+
+func push_race_selection():
+	push_scene("res://s_race_selection_menu.tscn")
 
 func _deferred_goto_scene(path):
 	scene_cur.free()

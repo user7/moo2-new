@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 var cts = [
 	[
@@ -50,11 +50,11 @@ var cts = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	setup($PanelContainer/GridContainer/CTDifficulty, 0)
-	setup($PanelContainer/GridContainer/CTGalaxySize, 1)
-	setup($PanelContainer/GridContainer/CTGalaxyAge, 2)
-	setup($PanelContainer/GridContainer/CTPlayers, 3)
-	setup($PanelContainer/GridContainer/CTTechLevel, 4)
+	setup($PanelContainer/VBoxContainer/GridContainer/CTDifficulty, 0)
+	setup($PanelContainer/VBoxContainer/GridContainer/CTGalaxySize, 1)
+	setup($PanelContainer/VBoxContainer/GridContainer/CTGalaxyAge, 2)
+	setup($PanelContainer/VBoxContainer/GridContainer/CTPlayers, 3)
+	setup($PanelContainer/VBoxContainer/GridContainer/CTTechLevel, 4)
 
 func setup(ct_scene, i):
 	if cts.size() <= i:
@@ -72,3 +72,9 @@ func setup(ct_scene, i):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
+
+func _on_back_pressed():
+	Global.pop_scene()
+
+func _on_accept_pressed():
+	Global.push_race_selection()

@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct0n71ycjekrv"]
+
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_4hq81"]
+[ext_resource type="Script" path="res://s_new_game_menu.gd" id="1_rh18m"]
+[ext_resource type="PackedScene" uid="uid://cbtcuhi1yip6y" path="res://s_ct.tscn" id="2_iuebw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gichw"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0980392, 0.152941, 0.105882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcgwq"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[node name="NewGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rh18m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -331.5
+offset_right = 384.0
+offset_bottom = 331.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4hq81")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gichw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="CTDifficulty" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("2_iuebw")]
+layout_mode = 2
+
+[node name="CTGalaxySize" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("2_iuebw")]
+layout_mode = 2
+
+[node name="CTGalaxyAge" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("2_iuebw")]
+layout_mode = 2
+
+[node name="CTPlayers" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("2_iuebw")]
+layout_mode = 2
+
+[node name="CTTechLevel" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("2_iuebw")]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gcgwq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TacticalCombat" type="CheckBox" parent="PanelContainer/VBoxContainer/GridContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tactical Combat"
+
+[node name="AntaranAttacks" type="CheckBox" parent="PanelContainer/VBoxContainer/GridContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Antaran Attacks"
+
+[node name="RandomEvents" type="CheckBox" parent="PanelContainer/VBoxContainer/GridContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Random Events"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Accept" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Accept"
+
+[node name="Back" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Back"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/Accept" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/Back" to="." method="_on_back_pressed"]

@@ -44,21 +44,17 @@ text = "New game"
 
 [node name="MultiplayerButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Multiplayer"
 
 [node name="HallOfFameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Hall of Fame"
 
 [node name="QuitGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit Game"
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
