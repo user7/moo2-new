@@ -27,6 +27,8 @@ func push_race_selection():
 	push_scene("res://s_race_selection_menu.tscn")
 
 func _deferred_goto_scene(path):
+	if path == null and scene_stack.size() == 0:
+		return
 	scene_cur.free()
 	if path == null:
 		scene_stack.pop_back()

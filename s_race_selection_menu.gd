@@ -28,4 +28,5 @@ func _on_nth(n: int, pressed: bool):
 		cur_portrait = n
 		var imgn = 13 if n == 0 else n / 2 if n % 2 else n / 2 + 6 # TODO
 		$HBox/Info/Portrait.texture = load("res://img/race_image_%s.png" % imgn)
-		$HBox/Info/RaceStats.text = "race #%s stat list description" % imgn
+		$HBox/Info/RaceStats.text = "" if imgn == 13 \
+				else "race #%s stat list description" % imgn
