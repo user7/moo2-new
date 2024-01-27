@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfohhp0l5ncfj"]
 
 [ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_2skqq"]
-[ext_resource type="Texture2D" uid="uid://86vqpigmnfuj" path="res://img/race_image_13.png" id="2_iqd1y"]
 [ext_resource type="Script" path="res://s_race_selection_menu.gd" id="2_lxjt8"]
+[ext_resource type="Texture2D" uid="uid://cymx6w7bemdl7" path="res://img/race_image_0.png" id="3_188hf"]
 
 [node name="RaceSelection" type="Control"]
 layout_mode = 3
@@ -43,7 +43,7 @@ theme_override_constants/separation = 5
 
 [node name="Portrait" type="TextureRect" parent="HBox/Info"]
 layout_mode = 2
-texture = ExtResource("2_iqd1y")
+texture = ExtResource("3_188hf")
 
 [node name="RaceStats" type="Label" parent="HBox/Info"]
 custom_minimum_size = Vector2(200, 50)
