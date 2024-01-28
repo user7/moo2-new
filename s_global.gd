@@ -14,8 +14,8 @@ func _process(_delta):
 func pop_scene():
 	push_scene(null)
 
-func push_scene(path):
-	call_deferred("_deferred_goto_scene", path)
+func push_scene(path, data = null):
+	call_deferred("_deferred_goto_scene", path, data)
 
 func push_scene_stub():
 	push_scene("res://s_stub.tscn")
@@ -23,10 +23,20 @@ func push_scene_stub():
 func push_scene_new_game():
 	push_scene("res://s_new_game_menu.tscn")
 
-func push_race_selection():
-	push_scene("res://s_race_selection_menu.tscn")
+func push_scene_race_selection(data = null):
+	push_scene("res://s_race_selection_menu.tscn", data)
 
-func _deferred_goto_scene(path):
+func push_scene_choose_banner():
+	push_scene("res://s_choose_banner.tscn")
+
+func push_scene_choose_name():
+	push_scene("res://s_choose_name.tscn")
+
+func push_scene_mapgen():
+	push_scene("res://s_mapgen.tscn")
+
+# init null or callable
+func _deferred_goto_scene(path, data):
 	if path == null and scene_stack.size() == 0:
 		return
 	scene_cur.free()
@@ -41,3 +51,5 @@ func _deferred_goto_scene(path):
 	scene_cur = ResourceLoader.load(path).instantiate()
 	get_tree().root.add_child(scene_cur)
 	get_tree().current_scene = scene_cur
+	if data != null:
+		scene_cur.init_scene(data)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw578pa8e3l4n"]
+
+[ext_resource type="Script" path="res://s_accept_back.gd" id="1_qedvy"]
+
+[node name="AcceptBack" type="MarginContainer"]
+script = ExtResource("1_qedvy")
+
+[node name="Accept" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Accept"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Back"
+
+[connection signal="pressed" from="Accept" to="." method="_on_accept_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

@@ -77,4 +77,4 @@ func _on_back_pressed():
 	Global.pop_scene()
 
 func _on_accept_pressed():
-	Global.push_race_selection()
+	Global.push_scene_race_selection()

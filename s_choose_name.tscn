@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://qna8w67n7506"]
+
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_bgl30"]
+[ext_resource type="Script" path="res://s_choose_name.gd" id="1_f11n3"]
+[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://s_accept_back.tscn" id="3_f11cu"]
+
+[node name="ChooseName" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f11n3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -20.0
+offset_right = 69.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bgl30")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Enter Ruler Name"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+text = "Ellowyn"
+
+[node name="AcceptBack" parent="VBoxContainer" instance=ExtResource("3_f11cu")]
+layout_mode = 2
+
+[connection signal="accept_pressed" from="VBoxContainer/AcceptBack" to="." method="_on_accept"]

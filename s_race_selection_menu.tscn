@@ -64,48 +64,48 @@ text = "Select Race"
 layout_mode = 2
 columns = 2
 
-[node name="Button1" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button0" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Alkari"
 
-[node name="Button2" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button7" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Meklars"
 
-[node name="Button3" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button1" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Bulrathi"
 
-[node name="Button4" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button8" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Mrrshan	"
 
-[node name="Button5" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button2" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Darlocks
 "
 
-[node name="Button6" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button9" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Psilons"
 
-[node name="Button7" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button3" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Elerians"
 
-[node name="Button8" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button10" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Sakkra"
 
-[node name="Button9" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button4" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Gnolams"
 
-[node name="Button10" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button11" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Silicoids"
 
-[node name="Button11" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button5" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Humans
 "
@@ -114,11 +114,11 @@ text = "Humans
 layout_mode = 2
 text = "Trilarians"
 
-[node name="Button13" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button6" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Klackons"
 
-[node name="Button0" type="Button" parent="HBox/Choice/Buttons"]
+[node name="Button13" type="Button" parent="HBox/Choice/Buttons"]
 layout_mode = 2
 text = "Custom"
 

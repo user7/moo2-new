@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://cnumnnhmwc5q6"]
+
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_0lqf2"]
+[ext_resource type="Script" path="res://s_choose_banner.gd" id="2_ceanh"]
+[ext_resource type="Texture2D" uid="uid://dw58qxd46vhml" path="res://img/banner_0.png" id="2_j1378"]
+[ext_resource type="Texture2D" uid="uid://d13x1tjipide" path="res://img/banner_1.png" id="3_hvr11"]
+[ext_resource type="Texture2D" uid="uid://kv0o4pq36ky5" path="res://img/banner_2.png" id="4_bb8xy"]
+[ext_resource type="Texture2D" uid="uid://cdueeuyterwp1" path="res://img/banner_3.png" id="5_x6txr"]
+[ext_resource type="Texture2D" uid="uid://c7j0ng5k0tu06" path="res://img/banner_4.png" id="6_a7ybn"]
+[ext_resource type="Texture2D" uid="uid://crf02uwc0qm66" path="res://img/banner_5.png" id="7_dbphq"]
+[ext_resource type="Texture2D" uid="uid://c02yv8tfvhrbq" path="res://img/banner_6.png" id="8_1diyx"]
+[ext_resource type="Texture2D" uid="uid://chc6bynthle44" path="res://img/banner_7.png" id="9_m2xuh"]
+[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://s_accept_back.tscn" id="10_m8shr"]
+
+[node name="ChooseBanner" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0lqf2")
+script = ExtResource("2_ceanh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -115.5
+offset_right = 81.0
+offset_bottom = 115.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Select Banner Color"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="TextureButton0" type="TextureButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_j1378")
+
+[node name="TextureButton1" type="TextureButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_hvr11")
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_bb8xy")
+
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_x6txr")
+
+[node name="TextureButton4" type="TextureButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_a7ybn")
+
+[node name="TextureButton5" type="TextureButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("7_dbphq")
+
+[node name="TextureButton6" type="TextureButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("8_1diyx")
+
+[node name="TextureButton7" type="TextureButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("9_m2xuh")
+
+[node name="AcceptBack" parent="VBoxContainer" instance=ExtResource("10_m8shr")]
+layout_mode = 2
+
+[connection signal="accept_pressed" from="VBoxContainer/AcceptBack" to="." method="_on_accept"]
