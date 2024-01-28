@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw578pa8e3l4n"]
+
+[ext_resource type="Script" path="res://s_back.gd" id="1_0jkdq"]
+
+[node name="Back" type="MarginContainer"]
+script = ExtResource("1_0jkdq")
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Back"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ct0n71ycjekrv"]
+[gd_scene load_steps=7 format=3 uid="uid://ct0n71ycjekrv"]
 
 [ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_4hq81"]
 [ext_resource type="Script" path="res://s_new_game_menu.gd" id="1_rh18m"]
 [ext_resource type="PackedScene" uid="uid://cbtcuhi1yip6y" path="res://s_ct.tscn" id="2_iuebw"]
+[ext_resource type="PackedScene" uid="uid://bm1ui55agqjpl" path="res://s_accept_back.tscn" id="4_dc3sl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gichw"]
 content_margin_left = 10.0
@@ -97,18 +98,7 @@ text = "Antaran Attacks"
 layout_mode = 2
 text = "Random Events"
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="AcceptBack" parent="PanelContainer/VBoxContainer" instance=ExtResource("4_dc3sl")]
 layout_mode = 2
 
-[node name="Accept" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "Accept"
-
-[node name="Back" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Back"
-
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/Accept" to="." method="_on_accept_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="accept_pressed" from="PanelContainer/VBoxContainer/AcceptBack" to="." method="_on_accept"]

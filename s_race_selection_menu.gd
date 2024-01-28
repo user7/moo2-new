@@ -6,7 +6,7 @@ var select_face = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in range(0, 14):
-		var button = get_node("HBox/Choice/Buttons/Button%s" % i)
+		var button = get_node("VBox/HBox/Choice/Buttons/Button%s" % i)
 		button.connect("pressed", func(): _on_nth(i, true))
 		button.connect("mouse_entered", func(): _on_nth(i, false))
 	pass # Replace with function body.
@@ -29,11 +29,11 @@ func _on_nth(n: int, pressed: bool):
 			Global.push_scene_choose_name()
 	elif cur_portrait != n:
 		cur_portrait = n
-		$HBox/Info/Portrait.texture = load("res://img/race_image_%s.png" % n)
+		$VBox/HBox/Info/Portrait.texture = load("res://img/race_image_%s.png" % n)
 		if select_face:
-			$HBox/Info/RaceStats.text = "" if n != 13 else "last race pics"
+			$VBox/HBox/Info/RaceStats.text = "" if n != 13 else "last race pics"
 		else:
-			$HBox/Info/RaceStats.text = "" if n == 13 \
+			$VBox/HBox/Info/RaceStats.text = "" if n == 13 \
 					else "race #%s description" % n
 
 func init_scene(data: bool):

@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw578pa8e3l4n"]
+[gd_scene load_steps=2 format=3 uid="uid://bm1ui55agqjpl"]
 
-[ext_resource type="Script" path="res://s_accept_back.gd" id="1_qedvy"]
+[ext_resource type="Script" path="res://s_accept_back.gd" id="1_3ttyw"]
 
 [node name="AcceptBack" type="MarginContainer"]
-script = ExtResource("1_qedvy")
+script = ExtResource("1_3ttyw")
 
 [node name="Accept" type="Button" parent="."]
 layout_mode = 2

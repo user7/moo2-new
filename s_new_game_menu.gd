@@ -73,8 +73,5 @@ func setup(ct_scene, i):
 func _process(_delta):
 	pass
 
-func _on_back_pressed():
-	Global.pop_scene()
-
-func _on_accept_pressed():
+func _on_accept():
 	Global.push_scene_race_selection()

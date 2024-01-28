@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://crf02uwc0qm66" path="res://img/banner_5.png" id="7_dbphq"]
 [ext_resource type="Texture2D" uid="uid://c02yv8tfvhrbq" path="res://img/banner_6.png" id="8_1diyx"]
 [ext_resource type="Texture2D" uid="uid://chc6bynthle44" path="res://img/banner_7.png" id="9_m2xuh"]
-[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://s_accept_back.tscn" id="10_m8shr"]
+[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://s_back.tscn" id="10_m8shr"]
 
 [node name="ChooseBanner" type="Control"]
 layout_mode = 3
@@ -21,6 +21,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_0lqf2")
 script = ExtResource("2_ceanh")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -77,7 +86,5 @@ texture_normal = ExtResource("8_1diyx")
 layout_mode = 2
 texture_normal = ExtResource("9_m2xuh")
 
-[node name="AcceptBack" parent="VBoxContainer" instance=ExtResource("10_m8shr")]
+[node name="Back" parent="VBoxContainer" instance=ExtResource("10_m8shr")]
 layout_mode = 2
-
-[connection signal="accept_pressed" from="VBoxContainer/AcceptBack" to="." method="_on_accept"]
