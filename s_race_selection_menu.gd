@@ -40,5 +40,5 @@ func init_scene(data: bool):
 	select_face = data
 	var cur = cur_portrait
 	cur_portrait = -1
-	$HBox/Choice/Label.text = "Select Race Picture"
+	$VBox/HBox/Choice/Label.text = "Select Race Picture"
 	_on_nth(cur, false)

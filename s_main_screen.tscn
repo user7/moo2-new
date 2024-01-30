@@ -1,0 +1,115 @@
+[gd_scene load_steps=2 format=3 uid="uid://crdbtmmq4ni45"]
+
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_ov5q0"]
+
+[node name="MainScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ov5q0")
+
+[node name="Game" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_right = 27.0
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "Game	"
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/separation = 5
+
+[node name="Stardate" type="Label" parent="VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Date 3500.0"
+
+[node name="Money" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Money 50 BC +7 BC"
+horizontal_alignment = 1
+
+[node name="Food" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Food +0"
+horizontal_alignment = 1
+
+[node name="Freighters" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Freighters +0 (0)"
+horizontal_alignment = 1
+
+[node name="Research" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Research none"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_top = -45.0
+offset_right = 292.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="Colonies" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Colonies"
+
+[node name="Planets" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Planets
+"
+
+[node name="Fleets" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Fleets"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Up" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "^"
+
+[node name="Down" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "v"
+
+[node name="Leaders" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Leaders"
+
+[node name="Races" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Races"
+
+[node name="Info" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Info"
+
+[node name="Turn" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "End Turn"
+
+[node name="Area2D" type="Area2D" parent="."]

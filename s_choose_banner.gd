@@ -7,10 +7,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
-func _on_accept():
-	Global.push_scene_stub()
-	#Global.push_scene_mapgen()
+func _on_banner_selected():
+	Global.push_scene_new_game_wait()

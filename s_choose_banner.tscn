@@ -88,3 +88,12 @@ texture_normal = ExtResource("9_m2xuh")
 
 [node name="Back" parent="VBoxContainer" instance=ExtResource("10_m8shr")]
 layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton0" to="." method="_on_banner_selected"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton1" to="." method="_on_banner_selected"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton2" to="." method="_on_banner_selected"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton3" to="." method="_on_banner_selected"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton4" to="." method="_on_banner_selected"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton5" to="." method="_on_banner_selected"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton6" to="." method="_on_banner_selected"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton7" to="." method="_on_banner_selected"]

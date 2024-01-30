@@ -32,8 +32,11 @@ func push_scene_choose_banner():
 func push_scene_choose_name():
 	push_scene("res://s_choose_name.tscn")
 
-func push_scene_mapgen():
-	push_scene("res://s_mapgen.tscn")
+func push_scene_new_game_wait():
+	push_scene("res://s_new_game_wait.tscn")
+
+func push_scene_main_screen():
+	push_scene("res://s_main_screen.tscn")
 
 # init null or callable
 func _deferred_goto_scene(path, data):
