@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dygetvxiyjt7v" path="res://img/star-6.png" id="8_vpwck"]
 [ext_resource type="PackedScene" uid="uid://gktnvg4etl0j" path="res://star.tscn" id="9_4dmmw"]
 
-[node name="Node" type="Node"]
+[node name="Markermap" type="Node"]
 script = ExtResource("1_fk5ra")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -38,7 +38,8 @@ render_target_update_mode = 4
 [node name="root" type="Node2D" parent="SubViewportContainer/SubViewport"]
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/root"]
-anchor_mode = 0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
 [node name="map" type="Node2D" parent="SubViewportContainer/SubViewport/root"]
 
