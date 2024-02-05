@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj8nq45jorq7w"]
+
+[ext_resource type="Script" path="res://s_marker.gd" id="1_15h0r"]
+[ext_resource type="Texture2D" uid="uid://cf80nrhm0alvo" path="res://img/star-4.png" id="2_lv4yp"]
+
+[node name="Marker" type="Node2D"]
+script = ExtResource("1_15h0r")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 485.0
+offset_bottom = 488.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("2_lv4yp")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -73.0
+offset_top = 29.0
+offset_right = 73.0
+offset_bottom = 52.0
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

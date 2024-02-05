@@ -1,9 +1,11 @@
 extends Node
 
 @onready var camera = $SubViewportContainer/SubViewport/root/Camera2D
+@onready var map = $SubViewportContainer/SubViewport/root/map
+
 var arrows = [
-	["move_left", 1, 0], ["move_right", -1, 0],
-	["move_down", 0, -1], ["move_up", 0, 1]
+	["move_left", Vector2i(1, 0)], ["move_right", Vector2i(-1, 0)],
+	["move_down", Vector2i(0, -1)], ["move_up", Vector2i(0, 1)]
 ]
 
 func _ready():
@@ -35,7 +37,7 @@ func input_sum(actions: Array):
 	var v = Vector2i.ZERO
 	for a in actions:
 		if Input.is_action_pressed(a[0]):
-			v += Vector2i(a[1], a[2])
+			v += a[1]
 	return v
 
 func _process(_delta):
@@ -50,3 +52,7 @@ func _process(_delta):
 			new_zoom[i] = min(max(new_zoom[i], 0.2), 3)
 		camera.position = new_pos
 		camera.zoom = new_zoom
+
+func add_marker(marker, position):
+	map.add_child(marker)
+	marker.transform.position = position

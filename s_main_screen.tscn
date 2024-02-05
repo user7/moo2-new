@@ -1,18 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://crdbtmmq4ni45"]
+[gd_scene load_steps=3 format=3 uid="uid://crdbtmmq4ni45"]
 
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_ov5q0"]
+[ext_resource type="Script" path="res://s_main_screen.gd" id="1_ori5v"]
+[ext_resource type="PackedScene" uid="uid://b55c1nbgf2h1y" path="res://s_marker_map.tscn" id="2_nqqfv"]
 
-[node name="MainScreen" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_ov5q0")
+[node name="MainScreen" type="Node"]
+script = ExtResource("1_ori5v")
+
+[node name="MarkerMap" parent="." instance=ExtResource("2_nqqfv")]
 
 [node name="Game" type="Button" parent="."]
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -23,7 +19,6 @@ grow_horizontal = 2
 text = "Game	"
 
 [node name="VBox" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -58,7 +53,6 @@ text = "Research none"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -111,5 +105,3 @@ text = "Info"
 [node name="Turn" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 text = "End Turn"
-
-[node name="Area2D" type="Area2D" parent="."]

@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://b55c1nbgf2h1y"]
+
+[ext_resource type="Script" path="res://s_marker_map.gd" id="1_1nyd1"]
+[ext_resource type="PackedScene" uid="uid://bj8nq45jorq7w" path="res://s_marker.tscn" id="2_pr3ax"]
+
+[node name="Markermap" type="Node"]
+script = ExtResource("1_1nyd1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -480.0
+offset_right = -128.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="root" type="Node2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/root"]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="map" type="Node2D" parent="SubViewportContainer/SubViewport/root"]
+
+[node name="Marker" parent="SubViewportContainer/SubViewport/root/map" instance=ExtResource("2_pr3ax")]
