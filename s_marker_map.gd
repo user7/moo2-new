@@ -55,4 +55,4 @@ func _process(_delta):
 
 func add_marker(marker, position):
 	map.add_child(marker)
-	marker.transform.position = position
+	marker.position = position
