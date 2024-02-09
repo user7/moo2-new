@@ -15,7 +15,7 @@ sub mul {
 }
 
 my $sz = 20;
-my $gscale = 1;
+my $gscale = 2;
 my ($mx, $my) = (0, 0);
 my ($nmx, $nmy) = (1, 1);
 
@@ -66,12 +66,13 @@ sub gen_svg_paths {
 }
 
 sub wrap_svg {
+    my ($data, $rect) = @_;
     my $sizex = $sz * $gscale * $nmx;
     my $sizey = $sz * $gscale * $nmy;
     my $wh = "width=\"$sizex\" height=\"$sizey\"";
     my $out = "<svg $wh xmlns=\"http://www.w3.org/2000/svg\">\n";
-    $out .= "<rect $wh fill=\"black\"\/>\n";
-    $out .= $_[0];
+    $out .= "<rect $wh fill=\"black\"\/>\n" if $rect;
+    $out .= $data;
     $out .= "</svg>";
     return $out;
 }
@@ -133,15 +134,15 @@ sub gen_stars_one_sheet {
         }
     }
 
-    write_file("star.svg", wrap_svg($out));
+    write_file("star.svg", wrap_svg($out, 1));
 }
 
 #gen_stars_one_sheet();
 
 sub gen_stars_files {
-    for (my $i = 0; $i < 14; $i += 2) {
-        gen_svg_file("../svg/star-norm-$i.svg", @{$stars[$i]});
-        gen_svg_file("../svg/star-high-$i.svg", @{$stars[$i + 1]});
+    for (my $i = 0; $i < 7; ++$i) {
+        gen_svg_file("../svg/star-norm-$i.svg", @{$stars[2 * $i]});
+        gen_svg_file("../svg/star-high-$i.svg", @{$stars[2 * $i + 1]});
     }
 }
 
