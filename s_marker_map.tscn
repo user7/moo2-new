@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b55c1nbgf2h1y"]
+[gd_scene load_steps=3 format=3 uid="uid://b55c1nbgf2h1y"]
 
 [ext_resource type="Script" path="res://s_marker_map.gd" id="1_1nyd1"]
+[ext_resource type="PackedScene" uid="uid://cldv2o34yjmgs" path="res://s_marker2.tscn" id="2_jxq5h"]
 
 [node name="MarkerMap" type="Node"]
 script = ExtResource("1_1nyd1")
@@ -36,3 +37,16 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="map" type="Node2D" parent="SubViewportContainer/SubViewport/root"]
+
+[node name="Control" parent="SubViewportContainer/SubViewport/root/map" instance=ExtResource("2_jxq5h")]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
