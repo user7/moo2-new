@@ -1,33 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj8nq45jorq7w"]
+[gd_scene load_steps=5 format=3 uid="uid://cldv2o34yjmgs"]
 
 [ext_resource type="Script" path="res://s_marker.gd" id="1_15h0r"]
-[ext_resource type="Texture2D" uid="uid://cf80nrhm0alvo" path="res://img/star-4.png" id="2_lv4yp"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_sbw6f"]
+[ext_resource type="Texture2D" uid="uid://coi1unnre7dfn" path="res://svg/star_norm_0.svg" id="3_86yqq"]
+[ext_resource type="Texture2D" uid="uid://damqd53b66468" path="res://svg/star_high_0.svg" id="4_uvkiw"]
 
-[node name="Marker" type="Node2D"]
+[node name="Marker" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_sbw6f")
 script = ExtResource("1_15h0r")
 
-[node name="TextureButton" type="TextureButton" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -26.0
-offset_right = 485.0
-offset_bottom = 488.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.1, 0.1)
-texture_normal = ExtResource("2_lv4yp")
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+offset_right = 84.0
+offset_bottom = 40.0
+use_top_left = true
 
-[node name="Label" type="Label" parent="."]
-offset_left = -73.0
-offset_top = 29.0
-offset_right = 73.0
-offset_bottom = 52.0
-text = "Label"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="TextureButton" type="TextureButton" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_86yqq")
+texture_pressed = ExtResource("4_uvkiw")
+texture_hover = ExtResource("4_uvkiw")
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = -192.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 66.0
+bbcode_enabled = true
+text = "[center]Altair [color=red]⚑[/color][color=green]⚑[/color][color=purple]⚑[/color][/center]"
+fit_content = true
+
+[connection signal="pressed" from="CenterContainer/TextureButton" to="." method="_on_texture_button_pressed"]

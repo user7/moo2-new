@@ -54,3 +54,4 @@ func _process(_delta):
 
 func add_marker(marker):
 	map.add_child(marker)
+

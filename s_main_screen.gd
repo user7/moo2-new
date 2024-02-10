@@ -15,13 +15,14 @@ var stars = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for s in stars:
-		var scene = ResourceLoader.load("res://s_marker2.tscn").instantiate()
+		var scene = ResourceLoader.load("res://s_marker.tscn").instantiate()
 		scene.set_texture(
 			load("res://svg/star_norm_%s.svg" % s[0]),
 			load("res://svg/star_high_%s.svg" % s[0]))
 		scene.set_label(s[1])
 		scene.position = Vector2(s[2], s[3])
 		map.add_marker(scene)
+		scene.connect("marker_clicked", func(): _on_marker_clicked(s[0]))
 	var menu = $GameMenu
 	menu.hide()
 
@@ -33,3 +34,6 @@ func _on_game_pressed():
 
 func _on_return_pressed():
 	$GameMenu.hide()
+
+func _on_marker_clicked(id):
+	print("marker %s clicked" % id)

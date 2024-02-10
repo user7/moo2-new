@@ -1,27 +1,15 @@
-extends Node2D
+extends Control
 
-signal marker_clicked(id)
-
-var id = null
+signal marker_clicked;
 
 func set_label(text: String):
-	print("label ", text)
-	$Label.text = text
+	$Label.text = "[center]" + text + "[/center]"
 
-func set_texture(texture):
-	var button = $TextureButton
-	#var label = $Label
-	button.texture_normal = texture
-	#button.position = texture.get_size() / 2.
-	#$Label.position = 	
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func set_texture(norm: Texture, high: Texture):
+	var b = $CenterContainer/TextureButton
+	b.texture_normal = norm
+	b.texture_pressed = high
+	b.texture_hover = high
 
 func _on_texture_button_pressed():
-	marker_clicked.emit(id)
+	marker_clicked.emit()
