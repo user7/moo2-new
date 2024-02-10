@@ -137,13 +137,13 @@ sub gen_stars_one_sheet {
     write_file("star.svg", wrap_svg($out, 1));
 }
 
-#gen_stars_one_sheet();
 
 sub gen_stars_files {
     for (my $i = 0; $i < 7; ++$i) {
-        gen_svg_file("../svg/star-norm-$i.svg", @{$stars[2 * $i]});
-        gen_svg_file("../svg/star-high-$i.svg", @{$stars[2 * $i + 1]});
+        gen_svg_file("svg/star_norm_$i.svg", @{$stars[2 * $i]});
+        gen_svg_file("svg/star_high_$i.svg", @{$stars[2 * $i + 1]});
     }
 }
 
+#gen_stars_one_sheet();
 gen_stars_files();

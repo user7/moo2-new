@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3sq3baq4bw6f"
-path="res://.godot/imported/star-high-6.svg-78fe9bfa5faa98c69671885e45c7ccac.ctex"
+uid="uid://bphvpgd28f5tj"
+path="res://.godot/imported/star_high_6.svg-969457fe419699974bbee308e4cc16d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://svg/star-high-6.svg"
-dest_files=["res://.godot/imported/star-high-6.svg-78fe9bfa5faa98c69671885e45c7ccac.ctex"]
+source_file="res://svg/star_high_6.svg"
+dest_files=["res://.godot/imported/star_high_6.svg-969457fe419699974bbee308e4cc16d8.ctex"]
 
 [params]
 

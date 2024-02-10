@@ -15,8 +15,10 @@ var stars = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for s in stars:
-		var scene = ResourceLoader.load("res://s_marker.tscn").instantiate()
-		scene.set_texture(load("res://img/star-%s.png" % s[0]))
+		var scene = ResourceLoader.load("res://s_marker2.tscn").instantiate()
+		scene.set_texture(
+			load("res://svg/star_norm_%s.svg" % s[0]),
+			load("res://svg/star_high_%s.svg" % s[0]))
 		scene.set_label(s[1])
 		map.add_marker(scene, Vector2(s[2], s[3]))
 	var menu = $GameMenu

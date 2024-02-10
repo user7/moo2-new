@@ -16,7 +16,6 @@ func _on_viewport_size_changed():
 	var svc = $SubViewportContainer
 	var sv = $SubViewportContainer/SubViewport
 	var vsz = get_viewport().size
-	print("viewport size set ", vsz)
 	svc.size = vsz
 	sv.size = vsz
 	svc.position = Vector2.ZERO

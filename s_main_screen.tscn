@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://crdbtmmq4ni45"]
+[gd_scene load_steps=4 format=3 uid="uid://crdbtmmq4ni45"]
 
 [ext_resource type="Script" path="res://s_main_screen.gd" id="1_ori5v"]
 [ext_resource type="PackedScene" uid="uid://b55c1nbgf2h1y" path="res://s_marker_map.tscn" id="2_nqqfv"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="3_x6e23"]
 
 [node name="MainScreen" type="Node"]
 script = ExtResource("1_ori5v")
@@ -16,6 +17,7 @@ offset_left = -27.0
 offset_right = 27.0
 offset_bottom = 31.0
 grow_horizontal = 2
+theme = ExtResource("3_x6e23")
 text = "Game	"
 
 [node name="VBox" type="VBoxContainer" parent="."]
@@ -25,6 +27,7 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
+theme = ExtResource("3_x6e23")
 theme_override_constants/separation = 5
 
 [node name="Stardate" type="Label" parent="VBox"]
@@ -63,6 +66,7 @@ offset_top = -45.0
 offset_right = 292.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("3_x6e23")
 theme_override_constants/separation = 5
 
 [node name="Colonies" type="Button" parent="HBoxContainer"]
@@ -108,11 +112,12 @@ text = "End Turn"
 
 [node name="GameMenu" type="Window" parent="."]
 initial_position = 2
-size = Vector2i(200, 200)
+size = Vector2i(300, 300)
 transient = true
 exclusive = true
 borderless = true
 popup_window = true
+theme = ExtResource("3_x6e23")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GameMenu"]
 anchors_preset = 15
