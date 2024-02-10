@@ -20,7 +20,8 @@ func _ready():
 			load("res://svg/star_norm_%s.svg" % s[0]),
 			load("res://svg/star_high_%s.svg" % s[0]))
 		scene.set_label(s[1])
-		map.add_marker(scene, Vector2(s[2], s[3]))
+		scene.position = Vector2(s[2], s[3])
+		map.add_marker(scene)
 	var menu = $GameMenu
 	menu.hide()
 

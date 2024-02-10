@@ -52,6 +52,5 @@ func _process(_delta):
 		camera.position = new_pos
 		camera.zoom = new_zoom
 
-func add_marker(marker, position):
+func add_marker(marker):
 	map.add_child(marker)
-	marker.position = position
