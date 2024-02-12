@@ -31,7 +31,7 @@ func _on_nth(n: int, pressed: bool):
 		cur_portrait = n
 		$VBox/HBox/Info/Portrait.texture = load("res://img/race_image_%s.png" % n)
 		if select_face:
-			$VBox/HBox/Info/RaceStats.text = "" if n != 13 else "last race pics"
+			$VBox/HBox/Info/RaceStats.text = "" if n != 13 else "last race picks"
 		else:
 			$VBox/HBox/Info/RaceStats.text = "" if n == 13 \
 					else "race #%s description" % n
