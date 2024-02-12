@@ -9,4 +9,4 @@ func _process(_delta):
 	pass
 
 func _on_back_pressed():
-	Global.pop_scene()
+	Router.pop_scene()

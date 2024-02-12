@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://dnuei6q2yk5tq"]
 
-[ext_resource type="Script" path="res://s_stub.gd" id="1_0x44h"]
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="2_ysc7v"]
+[ext_resource type="Script" path="res://stub.gd" id="1_0voql"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="2_8ul2b"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-script = ExtResource("1_0x44h")
+script = ExtResource("1_0voql")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -26,16 +26,16 @@ offset_right = 192.0
 offset_bottom = 43.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_ysc7v")
+theme = ExtResource("2_8ul2b")
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_ysc7v")
+theme = ExtResource("2_8ul2b")
 text = "Nothing here yet, sorry.."
 
 [node name="Back" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_ysc7v")
+theme = ExtResource("2_8ul2b")
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]

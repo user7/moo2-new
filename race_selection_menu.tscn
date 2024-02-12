@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dfohhp0l5ncfj"]
 
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_2skqq"]
-[ext_resource type="Script" path="res://s_race_selection_menu.gd" id="2_lxjt8"]
-[ext_resource type="Texture2D" uid="uid://cymx6w7bemdl7" path="res://img/race_image_0.png" id="3_188hf"]
-[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://s_back.tscn" id="4_3uxyr"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_6rbjp"]
+[ext_resource type="Script" path="res://s_race_selection_menu.gd" id="2_t4aqr"]
+[ext_resource type="Texture2D" uid="uid://cymx6w7bemdl7" path="res://img/race_image_0.png" id="3_eixj5"]
+[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://s_back.tscn" id="4_q56fy"]
 
 [node name="RaceSelection" type="Control"]
 layout_mode = 3
@@ -12,8 +12,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_2skqq")
-script = ExtResource("2_lxjt8")
+theme = ExtResource("1_6rbjp")
+script = ExtResource("2_t4aqr")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -47,7 +47,7 @@ theme_override_constants/separation = 5
 
 [node name="Portrait" type="TextureRect" parent="VBox/HBox/Info"]
 layout_mode = 2
-texture = ExtResource("3_188hf")
+texture = ExtResource("3_eixj5")
 
 [node name="RaceStats" type="Label" parent="VBox/HBox/Info"]
 custom_minimum_size = Vector2(200, 50)
@@ -126,5 +126,5 @@ text = "Klackons"
 layout_mode = 2
 text = "Custom"
 
-[node name="Back" parent="VBox" instance=ExtResource("4_3uxyr")]
+[node name="Back" parent="VBox" instance=ExtResource("4_q56fy")]
 layout_mode = 2

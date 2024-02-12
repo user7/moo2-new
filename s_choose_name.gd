@@ -10,4 +10,4 @@ func _process(_delta):
 	pass
 
 func _on_accept():
-	Global.push_scene_choose_banner()
+	Router.push_scene_choose_banner()

@@ -12,4 +12,4 @@ func _process(_delta):
 
 
 func _on_banner_selected():
-	Global.push_scene_new_game_wait()
+	Router.push_scene_new_game_wait()

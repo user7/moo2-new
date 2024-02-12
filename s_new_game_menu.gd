@@ -116,4 +116,4 @@ func save_controls():
 
 func _on_accept():
 	save_controls()
-	Global.push_scene_race_selection()
+	Router.push_scene_race_selection()

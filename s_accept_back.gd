@@ -15,4 +15,4 @@ func _on_accept_pressed():
 	accept_pressed.emit()
 
 func _on_back_pressed():
-	Global.pop_scene()
+	Router.pop_scene()

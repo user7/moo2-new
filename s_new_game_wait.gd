@@ -19,4 +19,4 @@ func _process(delta):
 			call_deferred("next_screen")
 
 func next_screen():
-	Global.push_scene_main_screen()
+	Router.push_scene_main_screen()
