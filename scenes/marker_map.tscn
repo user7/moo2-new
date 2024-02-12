@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://b55c1nbgf2h1y"]
 
-[ext_resource type="Script" path="res://s_marker_map.gd" id="1_1nyd1"]
+[ext_resource type="Script" path="res://scenes/marker_map.gd" id="1_ljtdb"]
 
 [node name="MarkerMap" type="Node"]
-script = ExtResource("1_1nyd1")
+script = ExtResource("1_ljtdb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

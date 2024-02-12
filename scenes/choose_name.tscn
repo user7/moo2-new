@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://qna8w67n7506"]
 
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_bgl30"]
-[ext_resource type="Script" path="res://s_choose_name.gd" id="1_f11n3"]
-[ext_resource type="PackedScene" uid="uid://bm1ui55agqjpl" path="res://s_accept_back.tscn" id="3_f11cu"]
+[ext_resource type="Script" path="res://scenes/choose_name.gd" id="1_dynsm"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="2_iv0ce"]
+[ext_resource type="PackedScene" uid="uid://bm1ui55agqjpl" path="res://scenes/accept_back.tscn" id="3_n1pn4"]
 
 [node name="ChooseName" type="Control"]
 layout_mode = 3
@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_f11n3")
+script = ExtResource("1_dynsm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -35,7 +35,7 @@ offset_right = 69.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_bgl30")
+theme = ExtResource("2_iv0ce")
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -46,7 +46,7 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "Ellowyn"
 
-[node name="AcceptBack" parent="VBoxContainer" instance=ExtResource("3_f11cu")]
+[node name="AcceptBack" parent="VBoxContainer" instance=ExtResource("3_n1pn4")]
 layout_mode = 2
 
 [connection signal="accept_pressed" from="VBoxContainer/AcceptBack" to="." method="_on_accept"]

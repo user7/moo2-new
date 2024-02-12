@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://ct0n71ycjekrv"]
 
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_4hq81"]
-[ext_resource type="Script" path="res://s_new_game_menu.gd" id="1_rh18m"]
-[ext_resource type="PackedScene" uid="uid://cbtcuhi1yip6y" path="res://s_ct.tscn" id="2_iuebw"]
-[ext_resource type="PackedScene" uid="uid://bm1ui55agqjpl" path="res://s_accept_back.tscn" id="4_dc3sl"]
+[ext_resource type="Script" path="res://scenes/new_game_menu.gd" id="1_jh6eh"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="2_nn4xm"]
+[ext_resource type="PackedScene" uid="uid://cbtcuhi1yip6y" path="res://scenes/ct.tscn" id="3_508ne"]
+[ext_resource type="PackedScene" uid="uid://bm1ui55agqjpl" path="res://scenes/accept_back.tscn" id="4_rkiws"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gichw"]
 content_margin_left = 10.0
@@ -26,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rh18m")
+script = ExtResource("1_jh6eh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -50,7 +50,7 @@ offset_right = 384.0
 offset_bottom = 331.5
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_4hq81")
+theme = ExtResource("2_nn4xm")
 theme_override_styles/panel = SubResource("StyleBoxFlat_gichw")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
@@ -62,19 +62,19 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 3
 
-[node name="CTDifficulty" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("2_iuebw")]
+[node name="CTDifficulty" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("3_508ne")]
 layout_mode = 2
 
-[node name="CTGalaxySize" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("2_iuebw")]
+[node name="CTGalaxySize" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("3_508ne")]
 layout_mode = 2
 
-[node name="CTGalaxyAge" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("2_iuebw")]
+[node name="CTGalaxyAge" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("3_508ne")]
 layout_mode = 2
 
-[node name="CTPlayers" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("2_iuebw")]
+[node name="CTPlayers" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("3_508ne")]
 layout_mode = 2
 
-[node name="CTTechLevel" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("2_iuebw")]
+[node name="CTTechLevel" parent="PanelContainer/VBoxContainer/GridContainer" instance=ExtResource("3_508ne")]
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/GridContainer"]
@@ -98,7 +98,7 @@ text = "Antaran Attacks"
 layout_mode = 2
 text = "Random Events"
 
-[node name="AcceptBack" parent="PanelContainer/VBoxContainer" instance=ExtResource("4_dc3sl")]
+[node name="AcceptBack" parent="PanelContainer/VBoxContainer" instance=ExtResource("4_rkiws")]
 layout_mode = 2
 
 [connection signal="accept_pressed" from="PanelContainer/VBoxContainer/AcceptBack" to="." method="_on_accept"]

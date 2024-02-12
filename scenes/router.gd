@@ -3,41 +3,49 @@ extends Node
 var scene_stack = []
 var scene_cur = null
 
+
 func _ready():
 	var root = get_tree().root
 	scene_cur = root.get_child(root.get_child_count() - 1)
-	scene_stack.push_back(["res://s_universal_menu.tscn", null])
+	scene_stack.push_back(["res://scenes/universal_menu.tscn", null])
 	print("Router ready")
 
-func _process(_delta):
-	pass
 
 func pop_scene():
 	push_scene(null)
 
+
 func push_scene(path, data = null):
 	call_deferred("_deferred_goto_scene", path, data)
 
+
 func push_scene_stub():
-	push_scene("res://stub.tscn")
+	push_scene("res://scenes/stub.tscn")
+
 
 func push_scene_new_game():
-	push_scene("res://s_new_game_menu.tscn")
+	push_scene("res://scenes/new_game_menu.tscn")
+
 
 func push_scene_race_selection(data = null):
-	push_scene("res://race_selection_menu.tscn", data)
+	push_scene("res://scenes/race_selection_menu.tscn", data)
+
 
 func push_scene_choose_banner():
-	push_scene("res://s_choose_banner.tscn")
+	push_scene("res://scenes/choose_banner.tscn")
+
 
 func push_scene_choose_name():
-	push_scene("res://s_choose_name.tscn")
+	push_scene("res://scenes/choose_name.tscn")
+
 
 func push_scene_new_game_wait():
-	push_scene("res://s_new_game_wait.tscn")
+	push_scene("res://scenes/new_game_wait.tscn")
+
 
 func push_scene_main_screen():
-	push_scene("res://s_main_screen.tscn")
+	push_scene("res://scenes/main_screen.tscn")
+
 
 func _deferred_goto_scene(path, data):
 	scene_cur.free()

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dfohhp0l5ncfj"]
 
 [ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_6rbjp"]
-[ext_resource type="Script" path="res://s_race_selection_menu.gd" id="2_t4aqr"]
+[ext_resource type="Script" path="res://scenes/race_selection_menu.gd" id="2_t4aqr"]
 [ext_resource type="Texture2D" uid="uid://cymx6w7bemdl7" path="res://img/race_image_0.png" id="3_eixj5"]
-[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://s_back.tscn" id="4_q56fy"]
+[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://scenes/back.tscn" id="4_q56fy"]
 
 [node name="RaceSelection" type="Control"]
 layout_mode = 3

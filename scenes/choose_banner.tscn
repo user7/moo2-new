@@ -1,16 +1,16 @@
 [gd_scene load_steps=12 format=3 uid="uid://cnumnnhmwc5q6"]
 
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_0lqf2"]
-[ext_resource type="Script" path="res://s_choose_banner.gd" id="2_ceanh"]
-[ext_resource type="Texture2D" uid="uid://dw58qxd46vhml" path="res://img/banner_0.png" id="2_j1378"]
-[ext_resource type="Texture2D" uid="uid://d13x1tjipide" path="res://img/banner_1.png" id="3_hvr11"]
-[ext_resource type="Texture2D" uid="uid://kv0o4pq36ky5" path="res://img/banner_2.png" id="4_bb8xy"]
-[ext_resource type="Texture2D" uid="uid://cdueeuyterwp1" path="res://img/banner_3.png" id="5_x6txr"]
-[ext_resource type="Texture2D" uid="uid://c7j0ng5k0tu06" path="res://img/banner_4.png" id="6_a7ybn"]
-[ext_resource type="Texture2D" uid="uid://crf02uwc0qm66" path="res://img/banner_5.png" id="7_dbphq"]
-[ext_resource type="Texture2D" uid="uid://c02yv8tfvhrbq" path="res://img/banner_6.png" id="8_1diyx"]
-[ext_resource type="Texture2D" uid="uid://chc6bynthle44" path="res://img/banner_7.png" id="9_m2xuh"]
-[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://s_back.tscn" id="10_m8shr"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_exokj"]
+[ext_resource type="Script" path="res://scenes/choose_banner.gd" id="2_s1jg3"]
+[ext_resource type="Texture2D" uid="uid://dw58qxd46vhml" path="res://img/banner_0.png" id="3_gku7t"]
+[ext_resource type="Texture2D" uid="uid://d13x1tjipide" path="res://img/banner_1.png" id="4_3jvrm"]
+[ext_resource type="Texture2D" uid="uid://kv0o4pq36ky5" path="res://img/banner_2.png" id="5_k3bit"]
+[ext_resource type="Texture2D" uid="uid://cdueeuyterwp1" path="res://img/banner_3.png" id="6_w0gyg"]
+[ext_resource type="Texture2D" uid="uid://c7j0ng5k0tu06" path="res://img/banner_4.png" id="7_nw7f7"]
+[ext_resource type="Texture2D" uid="uid://crf02uwc0qm66" path="res://img/banner_5.png" id="8_cvpk1"]
+[ext_resource type="Texture2D" uid="uid://c02yv8tfvhrbq" path="res://img/banner_6.png" id="9_d4tvr"]
+[ext_resource type="Texture2D" uid="uid://chc6bynthle44" path="res://img/banner_7.png" id="10_ydimn"]
+[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://scenes/back.tscn" id="11_k3yc4"]
 
 [node name="ChooseBanner" type="Control"]
 layout_mode = 3
@@ -19,8 +19,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_0lqf2")
-script = ExtResource("2_ceanh")
+theme = ExtResource("1_exokj")
+script = ExtResource("2_s1jg3")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -56,37 +56,37 @@ columns = 4
 
 [node name="TextureButton0" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("2_j1378")
+texture_normal = ExtResource("3_gku7t")
 
 [node name="TextureButton1" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("3_hvr11")
+texture_normal = ExtResource("4_3jvrm")
 
 [node name="TextureButton2" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("4_bb8xy")
+texture_normal = ExtResource("5_k3bit")
 
 [node name="TextureButton3" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("5_x6txr")
+texture_normal = ExtResource("6_w0gyg")
 
 [node name="TextureButton4" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("6_a7ybn")
+texture_normal = ExtResource("7_nw7f7")
 
 [node name="TextureButton5" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("7_dbphq")
+texture_normal = ExtResource("8_cvpk1")
 
 [node name="TextureButton6" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("8_1diyx")
+texture_normal = ExtResource("9_d4tvr")
 
 [node name="TextureButton7" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("9_m2xuh")
+texture_normal = ExtResource("10_ydimn")
 
-[node name="Back" parent="VBoxContainer" instance=ExtResource("10_m8shr")]
+[node name="Back" parent="VBoxContainer" instance=ExtResource("11_k3yc4")]
 layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton0" to="." method="_on_banner_selected"]

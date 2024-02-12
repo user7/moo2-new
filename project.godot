@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="godot"
-run/main_scene="res://universal_menu.tscn"
+run/main_scene="res://scenes/universal_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [autoload]
 
-Config="*res://config.gd"
-Router="*res://router.gd"
+Config="*res://scenes/config.gd"
+Router="*res://scenes/router.gd"
 
 [display]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbtcuhi1yip6y"]
 
 [ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_43lnm"]
-[ext_resource type="Script" path="res://s_ct.gd" id="1_w6qsq"]
+[ext_resource type="Script" path="res://scenes/ct.gd" id="1_w6qsq"]
 [ext_resource type="Texture2D" uid="uid://b4vqsreflc8h0" path="res://img/ng_none.png" id="2_goocb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyar5"]

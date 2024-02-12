@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwo2gvpl7woew"]
 
-[ext_resource type="Script" path="res://s_new_game_wait.gd" id="1_8m487"]
-[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://s_back.tscn" id="2_xhckv"]
+[ext_resource type="Script" path="res://scenes/new_game_wait.gd" id="1_wbtv6"]
+[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://scenes/back.tscn" id="2_g8l26"]
 
 [node name="NewGameWait" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_8m487")
+script = ExtResource("1_wbtv6")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -42,5 +42,5 @@ text = "Generating Universe"
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Back" parent="VBoxContainer" instance=ExtResource("2_xhckv")]
+[node name="Back" parent="VBoxContainer" instance=ExtResource("2_g8l26")]
 layout_mode = 2

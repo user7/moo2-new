@@ -12,10 +12,10 @@ var stars = [
 	[6, "Black Hole", 500, 500],
 ]
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	for s in stars:
-		var scene = ResourceLoader.load("res://s_marker.tscn").instantiate()
+		var scene = ResourceLoader.load("res://scenes/marker.tscn").instantiate()
 		scene.set_texture(
 			load("res://svg/star_norm_%s.svg" % s[0]),
 			load("res://svg/star_high_%s.svg" % s[0]))
@@ -26,14 +26,14 @@ func _ready():
 	var menu = $GameMenu
 	menu.hide()
 
-func _process(_delta):
-	pass
 
 func _on_game_pressed():
 	$GameMenu.show()
 
+
 func _on_return_pressed():
 	$GameMenu.hide()
+
 
 func _on_marker_clicked(id):
 	print("marker %s clicked" % id)

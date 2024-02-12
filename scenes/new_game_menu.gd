@@ -78,10 +78,7 @@ var controls = [
 	],
 ]
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	load_controls()
-	
+
 func load_controls():
 	for c in controls:
 		var type = c[0]
@@ -102,6 +99,11 @@ func load_controls():
 		else:
 			print("unknown control type: ", type)
 
+
+func _ready():
+	load_controls()
+
+
 func save_controls():
 	for c in controls:
 		var type = c[0]
@@ -113,6 +115,7 @@ func save_controls():
 			value = scene._cur_val
 		Config.set_conf(c[1], value)
 	Config.save_conf()
+
 
 func _on_accept():
 	save_controls()

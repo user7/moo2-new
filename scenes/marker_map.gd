@@ -4,13 +4,17 @@ extends Node
 @onready var map = $SubViewportContainer/SubViewport/root/map
 
 var arrows = [
-	["move_left", Vector2i(1, 0)], ["move_right", Vector2i(-1, 0)],
-	["move_down", Vector2i(0, -1)], ["move_up", Vector2i(0, 1)]
+	["move_left", Vector2i(1, 0)],
+	["move_right", Vector2i(-1, 0)],
+	["move_down", Vector2i(0, -1)],
+	["move_up", Vector2i(0, 1)]
 ]
+
 
 func _ready():
 	get_tree().root.connect("size_changed", _on_viewport_size_changed)
 	_on_viewport_size_changed()
+
 
 func _on_viewport_size_changed():
 	var svc = $SubViewportContainer
@@ -20,6 +24,7 @@ func _on_viewport_size_changed():
 	sv.size = vsz
 	svc.position = Vector2.ZERO
 
+
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseButton and event.pressed \
 		and event.button_index == MOUSE_BUTTON_LEFT:
@@ -28,9 +33,11 @@ func _unhandled_input(event: InputEvent):
 		var offset = Vector2(pos) - Vector2(center) 
 		camera.position += offset
 
+
 func input_zoom():
 	return 1 if Input.is_action_just_pressed("zoom in") else \
 		  -1 if Input.is_action_just_pressed("zoom out") else 0
+
 
 func input_sum(actions: Array):
 	var v = Vector2i.ZERO
@@ -38,6 +45,7 @@ func input_sum(actions: Array):
 		if Input.is_action_pressed(a[0]):
 			v += a[1]
 	return v
+
 
 func _process(_delta):
 	var shift = input_sum(arrows)
@@ -52,6 +60,6 @@ func _process(_delta):
 		camera.position = new_pos
 		camera.zoom = new_zoom
 
+
 func add_marker(marker):
 	map.add_child(marker)
-
