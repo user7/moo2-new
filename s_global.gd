@@ -7,7 +7,7 @@ func _ready():
 	var root = get_tree().root
 	scene_cur = root.get_child(root.get_child_count() - 1)
 	scene_stack.push_back(["res://s_universal_menu.tscn", null])
-	print("started, scene: ", scene_cur)
+	print("Global ready")
 
 func _process(_delta):
 	pass

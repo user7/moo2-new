@@ -15,11 +15,11 @@ func _process(_delta):
 func size():
 	return _labels.size()
 
-func set_data(caption, labels, pics):
+func init_clickthrough(caption, labels, pics, val = null):
 	$VBoxContainer/Caption.text = caption
 	_pics = pics
 	_labels = labels
-	show_pic(0)
+	show_pic(0 if val == null else val)
 
 func show_pic(add: int):
 	if size() > 0:

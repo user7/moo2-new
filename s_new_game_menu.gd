@@ -1,7 +1,10 @@
 extends Control
-
-var cts = [
+	
+var controls = [
 	[
+		"clickthrough",
+		"settings difficulty",
+		"CTDifficulty",
 		"Difficulty",
 		"res://img/ng_diff_%s.png",
 		"Tutor",
@@ -11,6 +14,9 @@ var cts = [
 		"Impossible",
 	],
 	[
+		"clickthrough",
+		"settings galaxy_size",
+		"CTGalaxySize",
 		"Galaxy Size",
 		"res://img/ng_size_%s.png",
 		"Small",
@@ -20,6 +26,9 @@ var cts = [
 		"Huge",
 	],
 	[
+		"clickthrough",
+		"settings galaxy_age",
+		"CTGalaxyAge",
 		"Galaxy Age",
 		"res://img/ng_age_%s.png",
 		"Mineral Rich",
@@ -27,6 +36,9 @@ var cts = [
 		"Organic Rich",
 	],
 	[
+		"clickthrough",
+		"settings players",
+		"CTPlayers",
 		"Players",
 		"res://img/ng_players_%s.png",
 		"2 Players",
@@ -39,6 +51,9 @@ var cts = [
 		"Random",
 	],
 	[
+		"clickthrough",
+		"settings tech_level",
+		"CTTechLevel",
 		"Tech Level",
 		"res://img/ng_tech_%s.png",
 		"Pre Warp",
@@ -46,32 +61,59 @@ var cts = [
 		"Post Warp",
 		"Advanced",
 	],
+	[
+		"checkbox",
+		"settings tactical_combat",
+		"PanelContainer/VBoxContainer/TacticalCombat",
+	],
+	[
+		"checkbox",
+		"settings antaran_attacks",
+		"PanelContainer/VBoxContainer/AntaranAttacks",
+	],
+	[
+		"checkbox",
+		"settings random_events",
+		"PanelContainer/VBoxContainer/RandomEvents",
+	],
 ]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	setup($PanelContainer/VBoxContainer/GridContainer/CTDifficulty, 0)
-	setup($PanelContainer/VBoxContainer/GridContainer/CTGalaxySize, 1)
-	setup($PanelContainer/VBoxContainer/GridContainer/CTGalaxyAge, 2)
-	setup($PanelContainer/VBoxContainer/GridContainer/CTPlayers, 3)
-	setup($PanelContainer/VBoxContainer/GridContainer/CTTechLevel, 4)
+	load_controls()
+	
+func load_controls():
+	for c in controls:
+		var type = c[0]
+		var conf_val = Config.get_conf(c[1])
+		print("loaded ", conf_val, " item ", c[1])
+		var scene = get_node("PanelContainer/VBoxContainer/GridContainer/" + c[2])
+		if type == "clickthrough":
+			var caption = c[3]
+			var template = c[4]
+			var pics = []
+			var labels = []
+			for j in range(5, c.size()):
+				labels.push_back(c[j])
+				pics.push_back(template % (j - 5))
+			scene.init_clickthrough(caption, labels, pics, conf_val)
+		elif type == "checkbox":
+			scene.button_pressed = conf_val != 0
+		else:
+			print("unknown control type: ", type)
 
-func setup(ct_scene, i):
-	if cts.size() <= i:
-		return
-	var cti = cts[i]
-	var pics = []
-	var labels = []
-	var caption = cti[0]
-	var template = cti[1]
-	for j in range(2, cti.size()):
-		labels.push_back(cti[j])
-		pics.push_back(template % (j - 2))
-	ct_scene.set_data(caption, labels, pics)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func save_controls():
+	for c in controls:
+		var type = c[0]
+		var scene = get_node("PanelContainer/VBoxContainer/GridContainer/" + c[2])
+		var value = null
+		if type == "checkbox":
+			value = 1 if scene.button_pressed else 0
+		elif type == "clickthrough":
+			value = scene._cur_val
+		Config.set_conf(c[1], value)
+		print("saved ", value, " item ", c[1])
 
 func _on_accept():
+	save_controls()
 	Global.push_scene_race_selection()
