@@ -7,16 +7,16 @@ var arrows = [
 	["move_left", Vector2i(1, 0)],
 	["move_right", Vector2i(-1, 0)],
 	["move_down", Vector2i(0, -1)],
-	["move_up", Vector2i(0, 1)]
+	["move_up", Vector2i(0, 1)],
 ]
 
 
 func _ready():
-	get_tree().root.connect("size_changed", _on_viewport_size_changed)
-	_on_viewport_size_changed()
+	get_tree().root.connect("size_changed", on_viewport_size_changed)
+	on_viewport_size_changed()
 
 
-func _on_viewport_size_changed():
+func on_viewport_size_changed():
 	var svc = $SubViewportContainer
 	var sv = $SubViewportContainer/SubViewport
 	var vsz = get_viewport().size
