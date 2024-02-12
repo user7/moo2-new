@@ -86,16 +86,16 @@ func load_controls():
 	for c in controls:
 		var type = c[0]
 		var conf_val = Config.get_conf(c[1])
-		print("loaded ", conf_val, " item ", c[1])
 		var scene = get_node("PanelContainer/VBoxContainer/GridContainer/" + c[2])
 		if type == "clickthrough":
 			var caption = c[3]
 			var template = c[4]
 			var pics = []
 			var labels = []
-			for j in range(5, c.size()):
+			const slice_start = 5
+			for j in range(slice_start, c.size()):
 				labels.push_back(c[j])
-				pics.push_back(template % (j - 5))
+				pics.push_back(template % (j - slice_start))
 			scene.init_clickthrough(caption, labels, pics, conf_val)
 		elif type == "checkbox":
 			scene.button_pressed = conf_val != 0
@@ -112,7 +112,7 @@ func save_controls():
 		elif type == "clickthrough":
 			value = scene._cur_val
 		Config.set_conf(c[1], value)
-		print("saved ", value, " item ", c[1])
+	Config.save_conf()
 
 func _on_accept():
 	save_controls()
