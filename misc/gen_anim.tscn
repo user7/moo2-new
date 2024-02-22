@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b210v0c6raw67"]
+
+[ext_resource type="Script" path="res://misc/gen_anim.gd" id="1_ur57t"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vrxja"]
+
+[node name="GenAnim" type="Node2D"]
+position = Vector2(4, 4)
+script = ExtResource("1_ur57t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+
+[node name="Focus" type="Sprite2D" parent="."]
+position = Vector2(182, 441)
+texture = SubResource("CompressedTexture2D_vrxja")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyp4640kgnkot"]
+
+[ext_resource type="Theme" uid="uid://b4so5ctiuq7nh" path="res://themes/theme_small.tres" id="1_ibjdo"]
+[ext_resource type="Script" path="res://scenes/aux_pick_item.gd" id="2_lfis6"]
+
+[node name="AuxPickItem" type="MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+theme = ExtResource("1_ibjdo")
+script = ExtResource("2_lfis6")
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 2
+text = "-0.5 Food"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "-3"
+
+[connection signal="pressed" from="CheckBox" to="." method="_on_clicked"]

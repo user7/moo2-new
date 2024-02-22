@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://b55c1nbgf2h1y"]
+
+[ext_resource type="Script" path="res://scenes/aux_marker_map.gd" id="1_ljtdb"]
+[ext_resource type="Texture2D" uid="uid://d25gdvv0io284" path="res://img/system/sky_stars.png" id="2_nf10s"]
+[ext_resource type="Texture2D" uid="uid://cxcm5h37yyd7w" path="res://img/star/norm/0.svg" id="3_0dmi8"]
+
+[node name="MarkerMap" type="Node"]
+script = ExtResource("1_ljtdb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.364706, 0.364706, 0.364706, 1)
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nf10s")
+stretch_mode = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 960)
+render_target_update_mode = 4
+
+[node name="root" type="Node2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/root"]
+anchor_mode = 0
+
+[node name="test" type="Node2D" parent="SubViewportContainer/SubViewport/root"]
+visible = false
+
+[node name="tl" type="Sprite2D" parent="SubViewportContainer/SubViewport/root/test"]
+texture = ExtResource("3_0dmi8")
+
+[node name="br" type="Sprite2D" parent="SubViewportContainer/SubViewport/root/test"]
+texture = ExtResource("3_0dmi8")
+offset = Vector2(1280, 960)

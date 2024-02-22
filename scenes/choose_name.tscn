@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://qna8w67n7506"]
 
 [ext_resource type="Script" path="res://scenes/choose_name.gd" id="1_dynsm"]
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="2_iv0ce"]
-[ext_resource type="PackedScene" uid="uid://bm1ui55agqjpl" path="res://scenes/accept_back.tscn" id="3_n1pn4"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://themes/theme.tres" id="2_iv0ce"]
+[ext_resource type="PackedScene" uid="uid://bm1ui55agqjpl" path="res://scenes/aux_accept_back.tscn" id="3_n1pn4"]
 
 [node name="ChooseName" type="Control"]
 layout_mode = 3

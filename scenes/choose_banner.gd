@@ -1,15 +1,12 @@
 extends Control
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for n in range(8):
+		get_node("VBoxContainer/GridContainer/TextureButton%s" % n) \
+			.connect("pressed", func (): _on_banner_selected(n))
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
-
-func _on_banner_selected():
+func _on_banner_selected(n: int):
+	G.game.get_current_player().banner = n
 	Router.push_scene_new_game_wait()

@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=3 uid="uid://mwro0y3o80no"]
+
+[ext_resource type="Texture2D" uid="uid://dtd3dmj5v26lg" path="res://misc/moo2-system-menu.png" id="1_3v875"]
+[ext_resource type="Script" path="res://misc/aux_system.gd" id="1_tp4ad"]
+
+[sub_resource type="Environment" id="Environment_raoyy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g7dce"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ura8f"]
+load_path = "res://.godot/imported/gas-giant-4.png-e79806b164cde71ee6189a0e2e11787c.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y3u7j"]
+albedo_texture = SubResource("CompressedTexture2D_ura8f")
+
+[sub_resource type="SphereMesh" id="SphereMesh_yw4aw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gcc45"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ow10q"]
+
+[node name="AuxSystem" type="Node2D"]
+script = ExtResource("1_tp4ad")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 600.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3v875")
+
+[node name="Cont" type="CenterContainer" parent="."]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 595.0
+offset_bottom = 55.0
+
+[node name="Label" type="Label" parent="Cont"]
+layout_mode = 2
+text = "Star System Draconis"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = 495.0
+offset_top = 445.0
+offset_right = 595.0
+offset_bottom = 495.0
+text = "CLOSE"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = 5.0
+offset_top = 60.0
+offset_right = 595.0
+offset_bottom = 440.0
+size_flags_vertical = 0
+auto_translate = false
+localize_numeral_system = false
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(590, 380)
+render_target_update_mode = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport"]
+environment = SubResource("Environment_raoyy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60229, 0, 0)
+light_color = Color(1, 0.537255, 1, 1)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00854, 0, 1.20593)
+light_color = Color(0.72549, 0.858824, 1, 1)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="SubViewportContainer/SubViewport"]
+gravity_scale = 0.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/RigidBody3D"]
+shape = SubResource("SphereShape3D_g7dce")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/RigidBody3D"]
+material_override = SubResource("StandardMaterial3D_y3u7j")
+mesh = SubResource("SphereMesh_yw4aw")
+
+[node name="Area3D" type="Area3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Area3D"]
+shape = SubResource("BoxShape3D_gcc45")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Area3D"]
+mesh = SubResource("BoxMesh_ow10q")
+
+[connection signal="gui_input" from="Cont" to="." method="_on_gui_input"]
+[connection signal="pressed" from="Button" to="." method="_on_close"]
+[connection signal="mouse_entered" from="SubViewportContainer/SubViewport/Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewportContainer/SubViewport/Area3D" to="." method="_on_area_3d_mouse_exited"]

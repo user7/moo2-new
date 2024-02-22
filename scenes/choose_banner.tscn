@@ -1,16 +1,32 @@
 [gd_scene load_steps=12 format=3 uid="uid://cnumnnhmwc5q6"]
 
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_exokj"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://themes/theme.tres" id="1_exokj"]
 [ext_resource type="Script" path="res://scenes/choose_banner.gd" id="2_s1jg3"]
-[ext_resource type="Texture2D" uid="uid://dw58qxd46vhml" path="res://img/banner_0.png" id="3_gku7t"]
-[ext_resource type="Texture2D" uid="uid://d13x1tjipide" path="res://img/banner_1.png" id="4_3jvrm"]
-[ext_resource type="Texture2D" uid="uid://kv0o4pq36ky5" path="res://img/banner_2.png" id="5_k3bit"]
-[ext_resource type="Texture2D" uid="uid://cdueeuyterwp1" path="res://img/banner_3.png" id="6_w0gyg"]
-[ext_resource type="Texture2D" uid="uid://c7j0ng5k0tu06" path="res://img/banner_4.png" id="7_nw7f7"]
-[ext_resource type="Texture2D" uid="uid://crf02uwc0qm66" path="res://img/banner_5.png" id="8_cvpk1"]
-[ext_resource type="Texture2D" uid="uid://c02yv8tfvhrbq" path="res://img/banner_6.png" id="9_d4tvr"]
-[ext_resource type="Texture2D" uid="uid://chc6bynthle44" path="res://img/banner_7.png" id="10_ydimn"]
-[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://scenes/back.tscn" id="11_k3yc4"]
+[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://scenes/aux_back.tscn" id="11_k3yc4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6a8m6"]
+load_path = "res://.godot/imported/banner_0.png-f181170b65d5cd05ae87b839b3575ad1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8bsr4"]
+load_path = "res://.godot/imported/banner_1.png-a64f0c7c9525dc94a298f0b1ab5efcfb.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gbhwy"]
+load_path = "res://.godot/imported/banner_2.png-0b291e6556b74a0db5aca05be9d3d5e1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e223l"]
+load_path = "res://.godot/imported/banner_3.png-5a9fb7089d32f421ba37c392c390e25a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1d828"]
+load_path = "res://.godot/imported/banner_4.png-a9b356a6dd44f32d48fe26fbc74638ba.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k5ot7"]
+load_path = "res://.godot/imported/banner_5.png-08fc03427ab81901e320ce27d4f608b6.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ittru"]
+load_path = "res://.godot/imported/banner_6.png-3fa1f9606c847383d5c4a0c2e0e115bd.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aycdj"]
+load_path = "res://.godot/imported/banner_7.png-baa65049f9863b4e5d4be583adc8fd5b.ctex"
 
 [node name="ChooseBanner" type="Control"]
 layout_mode = 3
@@ -56,44 +72,35 @@ columns = 4
 
 [node name="TextureButton0" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("3_gku7t")
+texture_normal = SubResource("CompressedTexture2D_6a8m6")
 
 [node name="TextureButton1" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("4_3jvrm")
+texture_normal = SubResource("CompressedTexture2D_8bsr4")
 
 [node name="TextureButton2" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("5_k3bit")
+texture_normal = SubResource("CompressedTexture2D_gbhwy")
 
 [node name="TextureButton3" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("6_w0gyg")
+texture_normal = SubResource("CompressedTexture2D_e223l")
 
 [node name="TextureButton4" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("7_nw7f7")
+texture_normal = SubResource("CompressedTexture2D_1d828")
 
 [node name="TextureButton5" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("8_cvpk1")
+texture_normal = SubResource("CompressedTexture2D_k5ot7")
 
 [node name="TextureButton6" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("9_d4tvr")
+texture_normal = SubResource("CompressedTexture2D_ittru")
 
 [node name="TextureButton7" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
-texture_normal = ExtResource("10_ydimn")
+texture_normal = SubResource("CompressedTexture2D_aycdj")
 
 [node name="Back" parent="VBoxContainer" instance=ExtResource("11_k3yc4")]
 layout_mode = 2
-
-[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton0" to="." method="_on_banner_selected"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton1" to="." method="_on_banner_selected"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton2" to="." method="_on_banner_selected"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton3" to="." method="_on_banner_selected"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton4" to="." method="_on_banner_selected"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton5" to="." method="_on_banner_selected"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton6" to="." method="_on_banner_selected"]
-[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton7" to="." method="_on_banner_selected"]

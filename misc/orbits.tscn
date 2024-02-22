@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbsxvbqmdxfkl"]
+
+[ext_resource type="Script" path="res://misc/orbits2.gd" id="1_lx8mf"]
+
+[sub_resource type="Environment" id="Environment_73xmj"]
+background_mode = 3
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.2
+reflected_light_source = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iawlm"]
+load_path = "res://.godot/imported/system-star-0.svg-03d55177537a3790241d97089e7c2e51.s3tc.ctex"
+
+[sub_resource type="Theme" id="Theme_or4pt"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7t8yp"]
+load_path = "res://.godot/imported/system-focus-frame.svg-2cdf6d37bb29302858e7f120d131c559.s3tc.ctex"
+
+[node name="System" type="Node3D"]
+script = ExtResource("1_lx8mf")
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="NoViewLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.5
+offset_top = -11.5
+offset_right = 54.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.513726, 0.654902, 1, 1)
+theme_override_colors/font_outline_color = Color(0.858824, 0.341176, 0.321569, 1)
+text = "Invalid Star ID"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+rotation_order = 0
+projection = 1
+current = true
+fov = 105.947
+size = 30.0
+near = 0.1
+far = 10000.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_73xmj")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.635294, 0.6, 0.494118, 1)
+light_energy = 11.522
+light_specular = 0.0
+omni_range = 62.608
+
+[node name="Star" type="Sprite3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0, -0.05, 0, 0.05, 0, 0, 0, 0)
+gi_lightmap_scale = 3
+pixel_size = 0.3
+billboard = 1
+texture = SubResource("CompressedTexture2D_iawlm")
+
+[node name="Markers" type="Node3D" parent="."]
+
+[node name="Planets" type="Node3D" parent="."]
+
+[node name="Orbits" type="Node3D" parent="."]
+
+[node name="PlanetStatsBG" type="ColorRect" parent="."]
+visible = false
+light_mask = 0
+visibility_layer = 4
+offset_left = 29.0
+offset_top = 30.0
+offset_right = 512.0
+offset_bottom = 480.0
+color = Color(1, 0, 0, 1)
+
+[node name="PlanetStatsLabel" type="Label" parent="."]
+visible = false
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 222.0
+offset_bottom = 131.0
+theme = SubResource("Theme_or4pt")
+theme_override_colors/font_color = Color(0.607843, 0.768627, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Hello people of earth
+you are all now slaves
+give up
+and die"
+
+[node name="Cursor" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 0)
+visible = false
+texture = SubResource("CompressedTexture2D_7t8yp")

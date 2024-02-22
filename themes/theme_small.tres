@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b4so5ctiuq7nh"]
+
+[ext_resource type="FontFile" uid="uid://kbrisq55ctne" path="res://fonts/Xolonium-Regular.ttf" id="1_cmdma"]
+
+[resource]
+default_font = ExtResource("1_cmdma")
+default_font_size = 20
+Button/colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)

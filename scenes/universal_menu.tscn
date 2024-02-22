@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbejghg7onb6v"]
 
 [ext_resource type="Script" path="res://scenes/universal_menu.gd" id="1_q5vs4"]
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="1_x0fex"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://themes/theme.tres" id="1_x0fex"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_q5vs4")
@@ -30,7 +30,6 @@ theme = ExtResource("1_x0fex")
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-disabled = true
 text = "Continue"
 
 [node name="LoadGameButton" type="Button" parent="VBoxContainer"]

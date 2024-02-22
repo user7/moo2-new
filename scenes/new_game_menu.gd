@@ -1,12 +1,15 @@
 extends Control
-	
-var controls = [
+
+@onready var seed_edit = $PanelContainer/VBoxContainer/GridContainer/PanelContainer/VBoxContainer/HBoxContainer/LineEdit
+var rng = RandomNumberGenerator.new()
+
+const controls = [
 	[
 		"clickthrough",
-		"settings difficulty",
+		"difficulty",
 		"CTDifficulty",
 		"Difficulty",
-		"res://img/ng_diff_%s.png",
+		"res://img/new_game/diff/%s.png",
 		"Tutor",
 		"Easy",
 		"Average",
@@ -15,10 +18,10 @@ var controls = [
 	],
 	[
 		"clickthrough",
-		"settings galaxy_size",
+		"galaxy_size",
 		"CTGalaxySize",
 		"Galaxy Size",
-		"res://img/ng_size_%s.png",
+		"res://img/new_game/size/%s.png",
 		"Small",
 		"Medium",
 		"Large",
@@ -27,20 +30,20 @@ var controls = [
 	],
 	[
 		"clickthrough",
-		"settings galaxy_age",
+		"galaxy_age",
 		"CTGalaxyAge",
 		"Galaxy Age",
-		"res://img/ng_age_%s.png",
+		"res://img/new_game/age/%s.png",
 		"Mineral Rich",
 		"Average",
 		"Organic Rich",
 	],
 	[
 		"clickthrough",
-		"settings players",
+		"players",
 		"CTPlayers",
 		"Players",
-		"res://img/ng_players_%s.png",
+		"res://img/new_game/players/%s.png",
 		"2 Players",
 		"3 Players",
 		"4 Players",
@@ -52,10 +55,10 @@ var controls = [
 	],
 	[
 		"clickthrough",
-		"settings tech_level",
+		"tech_level",
 		"CTTechLevel",
 		"Tech Level",
-		"res://img/ng_tech_%s.png",
+		"res://img/new_game/tech/%s.png",
 		"Pre Warp",
 		"Average",
 		"Post Warp",
@@ -63,17 +66,17 @@ var controls = [
 	],
 	[
 		"checkbox",
-		"settings tactical_combat",
+		"tactical_combat",
 		"PanelContainer/VBoxContainer/TacticalCombat",
 	],
 	[
 		"checkbox",
-		"settings antaran_attacks",
+		"antaran_attacks",
 		"PanelContainer/VBoxContainer/AntaranAttacks",
 	],
 	[
 		"checkbox",
-		"settings random_events",
+		"random_events",
 		"PanelContainer/VBoxContainer/RandomEvents",
 	],
 ]
@@ -82,7 +85,7 @@ var controls = [
 func load_controls():
 	for c in controls:
 		var type = c[0]
-		var conf_val = Config.get_conf(c[1])
+		var conf_val = G.get_setting(c[1])
 		var scene = get_node("PanelContainer/VBoxContainer/GridContainer/" + c[2])
 		if type == "clickthrough":
 			var caption = c[3]
@@ -113,10 +116,17 @@ func save_controls():
 			value = 1 if scene.button_pressed else 0
 		elif type == "clickthrough":
 			value = scene._cur_val
-		Config.set_conf(c[1], value)
-	Config.save_conf()
+		G.set_setting(c[1], value)
+	G.save_settings()
 
 
 func _on_accept():
-	save_controls()
+	save_controls() # saves to settings
+	var g = G.default_game() # reads settings
+	g.rng_seed = int(seed_edit.text)
+	G.game = g 
 	Router.push_scene_race_selection()
+
+
+func _randomize_seed():
+	seed_edit.text = str(rng.randi_range(0, 0x7FFFFFFF))

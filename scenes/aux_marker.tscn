@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cldv2o34yjmgs"]
+
+[ext_resource type="Theme" uid="uid://b4so5ctiuq7nh" path="res://themes/theme_small.tres" id="1_yg4pa"]
+[ext_resource type="Script" path="res://scenes/aux_marker.gd" id="2_s7y2d"]
+[ext_resource type="Texture2D" uid="uid://cxcm5h37yyd7w" path="res://img/star/norm/0.svg" id="3_3pcgx"]
+[ext_resource type="Texture2D" uid="uid://dow23o5n4ig37" path="res://img/star/high/0.svg" id="4_8dtu4"]
+
+[sub_resource type="Theme" id="Theme_na3as"]
+default_font_size = 40
+
+[node name="Marker" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_yg4pa")
+script = ExtResource("2_s7y2d")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_3pcgx")
+texture_pressed = ExtResource("4_8dtu4")
+texture_hover = ExtResource("4_8dtu4")
+
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 2
+offset_left = -192.0
+offset_top = 46.0
+offset_right = 192.0
+offset_bottom = 101.0
+theme = SubResource("Theme_na3as")
+bbcode_enabled = true
+text = "[center]Altair [color=red]⚑[/color][color=green]⚑[/color][color=purple]⚑[/color][/center]"
+fit_content = true
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cpsrv571f6j4p"]
+
+[ext_resource type="FontFile" uid="uid://kbrisq55ctne" path="res://fonts/Xolonium-Regular.ttf" id="1_mp4nf"]
+
+[resource]
+default_font = ExtResource("1_mp4nf")
+default_font_size = 20
+Button/colors/font_color = Color(0.760784, 0.760784, 0.760784, 1)
+Label/font_sizes/font_size = 14

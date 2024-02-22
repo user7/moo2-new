@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct0n71ycjekrv"]
+[gd_scene load_steps=8 format=3 uid="uid://ct0n71ycjekrv"]
 
 [ext_resource type="Script" path="res://scenes/new_game_menu.gd" id="1_jh6eh"]
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="2_nn4xm"]
-[ext_resource type="PackedScene" uid="uid://cbtcuhi1yip6y" path="res://scenes/ct.tscn" id="3_508ne"]
-[ext_resource type="PackedScene" uid="uid://bm1ui55agqjpl" path="res://scenes/accept_back.tscn" id="4_rkiws"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://themes/theme.tres" id="2_nn4xm"]
+[ext_resource type="PackedScene" uid="uid://cbtcuhi1yip6y" path="res://scenes/aux_ct.tscn" id="3_508ne"]
+[ext_resource type="Theme" uid="uid://b4so5ctiuq7nh" path="res://themes/theme_small.tres" id="4_07vxn"]
+[ext_resource type="PackedScene" uid="uid://bm1ui55agqjpl" path="res://scenes/aux_accept_back.tscn" id="4_rkiws"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gichw"]
 content_margin_left = 10.0
@@ -44,9 +45,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -384.0
+offset_left = -340.0
 offset_top = -331.5
-offset_right = 384.0
+offset_right = 340.0
 offset_bottom = 331.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -83,6 +84,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gcgwq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/PanelContainer"]
 layout_mode = 2
+theme = ExtResource("4_07vxn")
 theme_override_constants/separation = 10
 alignment = 1
 
@@ -98,7 +100,21 @@ text = "Antaran Attacks"
 layout_mode = 2
 text = "Random Events"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/GridContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/GridContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "⟳"
+
+[node name="LineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/GridContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+placeholder_text = "Seed"
+
 [node name="AcceptBack" parent="PanelContainer/VBoxContainer" instance=ExtResource("4_rkiws")]
 layout_mode = 2
 
+[connection signal="pressed" from="PanelContainer/VBoxContainer/GridContainer/PanelContainer/VBoxContainer/HBoxContainer/Button" to="." method="_randomize_seed"]
 [connection signal="accept_pressed" from="PanelContainer/VBoxContainer/AcceptBack" to="." method="_on_accept"]

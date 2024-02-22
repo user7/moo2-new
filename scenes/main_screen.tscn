@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://crdbtmmq4ni45"]
 
 [ext_resource type="Script" path="res://scenes/main_screen.gd" id="1_ori5v"]
-[ext_resource type="PackedScene" uid="uid://b55c1nbgf2h1y" path="res://scenes/marker_map.tscn" id="2_nqqfv"]
-[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://theme.tres" id="3_x6e23"]
+[ext_resource type="PackedScene" uid="uid://b55c1nbgf2h1y" path="res://scenes/aux_marker_map.tscn" id="2_nqqfv"]
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://themes/theme.tres" id="3_x6e23"]
 
 [node name="MainScreen" type="Node"]
 script = ExtResource("1_ori5v")
@@ -113,7 +113,6 @@ text = "End Turn"
 [node name="GameMenu" type="Window" parent="."]
 initial_position = 2
 size = Vector2i(300, 300)
-visible = false
 transient = true
 exclusive = true
 borderless = true
@@ -146,7 +145,6 @@ text = "New Game"
 
 [node name="Quit" type="Button" parent="GameMenu/VBoxContainer"]
 layout_mode = 2
-disabled = true
 text = "Quit Game"
 
 [node name="Settings" type="Button" parent="GameMenu/VBoxContainer"]
@@ -161,4 +159,5 @@ text = "Return
 
 [connection signal="pressed" from="Game" to="." method="_on_game_pressed"]
 [connection signal="close_requested" from="GameMenu" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="GameMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="GameMenu/VBoxContainer/Return" to="." method="_on_return_pressed"]

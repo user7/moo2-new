@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bi7i57jj3gmd"]
+
+[ext_resource type="Script" path="res://misc/mouse_entered_test.gd" id="1_5ofdx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ax6qk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1wbku"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sxhs1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_01kh6"]
+
+[node name="MouseEnteredTest" type="Node3D"]
+script = ExtResource("1_5ofdx")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_ax6qk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_1wbku")
+
+[node name="Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.164917, -0.878113, 1.12476)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+shape = SubResource("SphereShape3D_sxhs1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D2"]
+mesh = SubResource("SphereMesh_01kh6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.95984, 0.0549054, 0.275124, 0, 0.980663, -0.195707, -0.280549, 0.187847, 0.941279, 0.936523, -1.39209, 3.71008)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28748, 1.3811, 1.0946)
+light_color = Color(1, 0, 0, 1)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51355, 1.58716, 1.63184)
+light_color = Color(0, 1, 0, 1)
+light_energy = 0.2
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]
+[connection signal="mouse_entered" from="Area3D2" to="." method="_on_area_3d_2_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D2" to="." method="_on_area_3d_2_mouse_exited"]

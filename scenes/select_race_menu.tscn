@@ -1,0 +1,133 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfohhp0l5ncfj"]
+
+[ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://themes/theme.tres" id="1_5ppk7"]
+[ext_resource type="Script" path="res://scenes/select_race_menu.gd" id="2_ypnjc"]
+[ext_resource type="Theme" uid="uid://cpsrv571f6j4p" path="res://themes/theme_tiny.tres" id="4_6pah7"]
+[ext_resource type="PackedScene" uid="uid://bw578pa8e3l4n" path="res://scenes/aux_back.tscn" id="5_e4v15"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nq4r8"]
+load_path = "res://.godot/imported/race_image_0.png-fa35e65a0788b615d2c096b5d5427f36.ctex"
+
+[node name="RaceSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5ppk7")
+script = ExtResource("2_ypnjc")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -229.0
+offset_right = 256.0
+offset_bottom = 229.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBox" type="HBoxContainer" parent="VBox"]
+layout_mode = 2
+
+[node name="Info" type="VBoxContainer" parent="VBox/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Portrait" type="TextureRect" parent="VBox/HBox/Info"]
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_nq4r8")
+
+[node name="RaceStats" type="Label" parent="VBox/HBox/Info"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme = ExtResource("4_6pah7")
+text = "racial statistics multiline label"
+autowrap_mode = 3
+
+[node name="Choice" type="VBoxContainer" parent="VBox/HBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBox/HBox/Choice"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Select Race"
+
+[node name="Buttons" type="GridContainer" parent="VBox/HBox/Choice"]
+layout_mode = 2
+columns = 2
+
+[node name="Button0" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Alkari"
+
+[node name="Button7" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Meklars"
+
+[node name="Button1" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Bulrathi"
+
+[node name="Button8" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Mrrshan	"
+
+[node name="Button2" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Darlocks
+"
+
+[node name="Button9" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Psilons"
+
+[node name="Button3" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Elerians"
+
+[node name="Button10" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Sakkra"
+
+[node name="Button4" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Gnolams"
+
+[node name="Button11" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Silicoids"
+
+[node name="Button5" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Humans
+"
+
+[node name="Button12" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Trilarians"
+
+[node name="Button6" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Klackons"
+
+[node name="Button13" type="Button" parent="VBox/HBox/Choice/Buttons"]
+layout_mode = 2
+text = "Custom"
+
+[node name="Back" parent="VBox" instance=ExtResource("5_e4v15")]
+layout_mode = 2
