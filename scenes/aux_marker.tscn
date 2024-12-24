@@ -16,10 +16,10 @@ script = ExtResource("2_s7y2d")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 2
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 40.0
+offset_bottom = 40.0
 size_flags_horizontal = 4
 texture_normal = ExtResource("3_3pcgx")
 texture_pressed = ExtResource("4_8dtu4")
@@ -28,9 +28,9 @@ texture_hover = ExtResource("4_8dtu4")
 [node name="Label" type="RichTextLabel" parent="."]
 layout_mode = 2
 offset_left = -192.0
-offset_top = 46.0
+offset_top = 30.0
 offset_right = 192.0
-offset_bottom = 101.0
+offset_bottom = 85.0
 theme = SubResource("Theme_na3as")
 bbcode_enabled = true
 text = "[center]Altair [color=red]⚑[/color][color=green]⚑[/color][color=purple]⚑[/color][/center]"
