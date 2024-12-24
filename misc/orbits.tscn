@@ -47,12 +47,12 @@ theme_override_colors/font_outline_color = Color(0.858824, 0.341176, 0.321569, 1
 text = "Invalid Star ID"
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+transform = Transform3D(1, 0, 0, 0, 0.921151, 0.389204, 0, -0.389204, 0.921151, 0, 14.53, 35.4004)
 rotation_order = 0
 projection = 1
 current = true
 fov = 105.947
-size = 30.0
+size = 52.4242
 near = 0.1
 far = 10000.0
 

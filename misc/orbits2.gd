@@ -64,8 +64,8 @@ func cvector(c: float):
 	return Vector3(c, c, c)
 
 func _ready():
-	camera.position = camera.position.rotated(ox, -camera_angle)
-	camera.rotate(ox, -camera_angle)
+	#camera.position = camera.position.rotated(ox, -camera_angle)
+	#camera.rotate(ox, -camera_angle)
 	if G.game == null:
 		generate_test_game()
 	rebuild_planets()
@@ -105,7 +105,7 @@ func generate_test_game():
 	colony.player = plid1
 	colony.planet = star.orbits[2]
 	var pop = G.Pop.new()
-	pop.player = plid1
+	pop.race = pl1.race
 	pop.job = G.Job.FARMER
 	for i in 5:
 		colony.pop.push_back(pop)
@@ -148,7 +148,7 @@ func rebuild_planets():
 		pd.texture_num = pid
 		pd.pid = pid
 		pd.orbit = oi
-		pd.cid = G.game.planet_to_colony(pid)
+		pd.cid = p.colony
 
 		var bbc = StaticBody3D.new()
 		bbc.set_collision_layer(1)
@@ -160,7 +160,7 @@ func rebuild_planets():
 		var bbpc = MeshInstance3D.new()
 		bbpc.mesh = SphereMesh.new()
 		var climate = climate_names[p.climate] if p.kind == G.PlanetKind.PLANET else "gas_giant"
-		var tname = "res://img/planets/%s/%s.png" % [climate, pd.texture_num]
+		var tname = "res://img/planets/%s/%s.png" % [climate, pd.texture_num % 8]
 		bbpc.mesh.material = StandardMaterial3D.new()
 		bbpc.mesh.material.albedo_texture = load(tname)
 

@@ -21,7 +21,6 @@ func _on_area_3d_mouse_exited():
 	pass # Replace with function body.
 
 
-
 func _on_area_3d_2_mouse_entered():
 	print("entered sphere")
 	pass # Replace with function body.
