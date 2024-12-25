@@ -812,6 +812,7 @@ class Game:
 		ctx.progress = prog
 		universe_generation(ctx)
 		generate_home_worlds_stub()
+		name_stars()
 		# enforce_planet_max(250)
 		# if settings.civ_level == Civ.ADVANCED:
 			# advanced_civilization_colonies()
@@ -824,6 +825,28 @@ class Game:
 		assign_marooned_heroes()
 		twiddle_initial_homeworlds()
 		update_data()
+
+	func name_stars():
+		var vov = [ "a", "i", "u", "e", "o"]
+		var cons = [ "k", "r", "m", "n", "b", "t", "sh", "z"]
+		var syllables = []
+		for c in cons:
+			for v in vov:
+				syllables.append(c + v)
+		var names = { "": 1 }
+		for si in stars:
+			var name = ""
+			while name in names:
+				name = generate_random_name(syllables, [1, 8, 4])
+			stars[si].name = name
+			names[name] = 1
+
+	func generate_random_name(syllables: Array, lengths: Array) -> String:
+		var name_length = weighted_roll(lengths) + 1
+		var name = ""
+		for n in range(name_length):
+			name += syllables[randi() % syllables.size()]
+		return name.capitalize()
 
 	func star_in_nebula_n(si: int, n: Nebula):
 		return is_point_in_box(stars[si].pos, n.pos, nebula_size(n))
