@@ -54,9 +54,10 @@ enum Gravity {
 }
 
 enum PlanetKind {
-	PLANET = 0,
 	ASTEROID_BELT = 1,
-	GAS_GIANT = 2
+	GAS_GIANT = 2,
+	PLANET = 3,
+	SPECIAL = 4, # unimplemented
 }
 
 enum PlanetSpecial {
@@ -104,6 +105,12 @@ enum Civ {
 	AVERAGE,
 	POST_WARP,
 	ADVANCED,
+}
+
+enum Age {
+	YOUNG,
+	AVERAGE,
+	OLD,
 }
 
 class PopBonus:
@@ -175,7 +182,7 @@ class GalaxyTraits:
 class Settings:
 	var difficulty: int = 0
 	var galaxy_size: int = 2
-	var galaxy_age: int = 1
+	var galaxy_age: int = Age.AVERAGE
 	var players: int = 6
 	var tech_level: int = 0
 	var tactical_combat: int = 1
@@ -253,6 +260,70 @@ class Config:
 		[15, 20, 33],
 		[25, 20,  5],
 	]
+	var orbit_to_satellite_type: Array = [
+		[1, 1, 1, 1, 1],
+		[4, 1, 1, 1, 2],
+		[3, 2, 1, 2, 2],
+		[3, 3, 2, 2, 2],
+		[3, 3, 2, 2, 2],
+		[3, 3, 3, 3, 2],
+		[3, 3, 3, 3, 3],
+		[3, 3, 3, 3, 3],
+		[3, 3, 3, 3, 3],
+		[3, 3, 3, 3, 3],
+	]
+	var class_to_mineral: Array = [
+		[2, 1, 1, 0, 0, 1],
+		[2, 1, 1, 1, 0, 2],
+		[2, 2, 1, 1, 1, 2],
+		[2, 2, 2, 1, 1, 2],
+		[3, 2, 2, 1, 1, 2],
+		[3, 2, 2, 2, 1, 2],
+		[3, 3, 2, 2, 2, 3],
+		[3, 3, 3, 2, 2, 3],
+		[4, 3, 3, 2, 2, 3],
+		[4, 4, 4, 3, 2, 4],
+	]
+	var planet_size_to_gravity: Array = [
+		[0, 0, 1, 1, 1],
+		[0, 0, 0, 1, 1],
+		[0, 1, 1, 1, 2],
+		[1, 1, 1, 2, 2],
+		[1, 1, 2, 2, 2],
+	]
+	var orbit_to_climate_group: Array = [
+		[0, 0, 0, 0, 1],
+		[0, 0, 1, 2, 3],
+		[0, 1, 2, 2, 3],
+		[1, 2, 2, 2, 3],
+		[1, 2, 3, 3, 3],
+		[0, 0, 1, 2, 3],
+	]
+	var climate_chance_young_avg_gal: Array = [
+		[15, 15, 10, 20],
+		[55, 50, 15,  0],
+		[25, 25, 10, 70],
+		[5,  10, 10,  0],
+		[0,  5,  10,  8],
+		[0,  0,  10,  2],
+		[0,  0,  11,  0],
+		[0,  0,  11,  0],
+		[0,  0,  11,  0],
+		[0,  0,  2,   0],
+	]
+	var climate_chance_old_gal: Array = [
+		[15, 5 , 5, 20],
+		[40, 30, 8, 0],
+		[20, 20, 8, 50],
+		[25, 25, 13, 0],
+		[0,  20, 13, 30],
+		[0,  0, 13, 0],
+		[0,  0, 13, 0],
+		[0,  0, 13, 0],
+		[0,  0, 10, 0],
+		[0,  0, 4, 0],
+	]
+	var planet_size_table: Array = [1, 3, 7, 9, 10]
 	var galaxy_traits: Dictionary = {}
 	var star_special_chance = 64
 	var planet_special_chance = [64, 5, 3, 1, 2, 1, 9, 4, 3, 0, 5]
@@ -375,6 +446,7 @@ class Planet:
 	var star: int = NOID
 	var size: int = PlanetSize.AVERAGE
 	var kind: int = PlanetKind.PLANET
+	var orbit: int = 0
 	var climate: int = Climate.TERRAN
 	var minerals: int = Minerals.ABUNDANT
 	var gravity: int = Gravity.NORMALG
@@ -791,7 +863,68 @@ class Game:
 			return 0 # original behavior is to always roll even for BH!
 		return config.class_to_num_satellites[r][color]
 
-	func planet_generation(sid: int) -> bool:
+	func generate_size() -> PlanetSize:
+		var r = random(10)
+		var cha = config.planet_special_chance
+		for i in range(cha.size()):
+			if r < cha[i]:
+				return i
+		return PlanetSize.AVERAGE
+
+	func generate_mineral_class(color: int) -> Minerals:
+		return config.class_to_mineral[random(10) - 1][color]
+
+	func generate_climate(color: StarColor, oi: int, make_food_planet: bool = false) -> Climate:
+		var group = config.orbit_to_climate_group[color][oi]
+		var weights = U.array(10)
+		for i in range(10):
+			match settings.galaxy_age:
+				Age.YOUNG, Age.AVERAGE:
+					weights[i] = config.climate_chance_young_avg_gal[i][group]
+				Age.OLD:
+					weights[i] = config.climate_chance_old_gal[i][group]
+		if make_food_planet:
+			pass # TODO
+		return weighted_roll(weights)
+
+	func generate_gravity(planet: Planet) -> Gravity:
+		return config.planet_size_to_gravity[planet.minerals][planet.size]
+
+	func planet_generation(si: int) -> bool:
+		var oi = generate_orbit(si)
+		if oi == -1:
+			return false
+		var kind = generate_satellite_type(si, oi)
+		var star: Star = stars[si]
+		if kind in [PlanetKind.PLANET, PlanetKind.ASTEROID_BELT, PlanetKind.GAS_GIANT]:
+			var pi = add_planet()
+			var planet: Planet = planets[pi]
+			star.orbits[oi] = pi
+			planet.star = si
+			planet.orbit = oi
+			planet.colony = NOID
+			planet.kind = kind
+			planet.size = generate_size()
+			planet.minerals = generate_mineral_class(star.color)
+			planet.gravity = generate_gravity(planet)
+			planet.climate = generate_climate(star.color, oi)
+			# TODO
+			# planet.picture = random(3) - 1
+			# planet.max_farms
+			# planet.food_base  = generate food per farmer
+		return true
+
+	func generate_satellite_type(si: int, oi: int) -> PlanetKind:
+		while true:
+			var r = random(10) - 1
+			var type = config.orbit_to_satellite_type[r][oi]
+			if r == PlanetKind.SPECIAL:
+				type = PlanetKind.ASTEROID_BELT # unimplemented
+			if type != PlanetKind.GAS_GIANT or oi: # no giants in closest orbit
+				return type
+		return PlanetKind.ASTEROID_BELT # to shut godot up
+
+	func generate_orbit(sid: int) -> int:
 		# TODO
 		var w = [0, 0, 0, 0, 0]
 		var sum = 0
@@ -801,9 +934,8 @@ class Game:
 				w[i] = config.satellite_orbit_chance[i][settings.galaxy_age]
 				sum += w[i]
 		if sum == 0:
-			return false
-		var r = weighted_roll(w)
-		return r
+			return -1
+		return weighted_roll(w)
 
 	func init_new_game(prog):
 		var ctx = MapgenCtx.new()
@@ -1115,7 +1247,7 @@ class Game:
 		return s.color == StarColor.BH
 
 	func create_home_world(s: Star, pli: int):
-		var oi = random(5)
+		var oi = random(5) - 1
 		var pi = s.orbits[oi]
 		var pl: Player = players[pli]
 		var r: Race = races[pl.race]
