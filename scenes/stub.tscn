@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/stub.gd" id="1_0voql"]
 [ext_resource type="Theme" uid="uid://cybssocn771kw" path="res://themes/theme.tres" id="2_8ul2b"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer2" type="CanvasLayer"]
 script = ExtResource("1_0voql")
 
 [node name="ColorRect" type="ColorRect" parent="."]

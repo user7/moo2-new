@@ -1167,7 +1167,7 @@ class Game:
 			star.wormhole = NOID
 			ctx.do_step()
 
-		for i in 1000:
+		for i in 100:
 			ctx.do_step()
 			if map_is_connected():
 				return

@@ -1,7 +1,8 @@
 extends Control
 
 var initialized = false
-var race_traits: G.Race
+var race: G.Race
+var race_traits: G.RaceTraits
 var checkboxes = {}
 var evo_bonus_present = false
 
@@ -11,16 +12,16 @@ func init_scene(evo_bonus: bool):
 		return
 	var flow = $VBoxContainer/VFlowContainer
 	var group_scene = preload("res://scenes/aux_pick_group.tscn")
-	var race = G.game.races[G.game.get_current_player().race]
+	race = U.clone(G.game.races[G.game.get_current_player().race])
 	$VBoxContainer/RaceName.text = race.name
 	race_traits = race.traits
-	for g in G.gui_pick_groups:
+	for g in G.game.config.gui_pick_groups:
 		var scene = group_scene.instantiate()
 		scene.set_label(g.label)
 		for opt_ref in g.option_refs:
 			var pick_id = opt_ref.pick_id
 			var option_id = opt_ref.option_id
-			var pick: G.Pick = G.config.picks[pick_id]
+			var pick: G.Pick = G.game.config.picks[pick_id]
 			var option = pick.options[option_id]
 			var last_value = race_traits.get(pick_id)
 			var is_checked = last_value == option_id + 1
@@ -32,12 +33,13 @@ func init_scene(evo_bonus: bool):
 	initialized = true
 
 func recalc_picks():
-	var picks = G.config.picks
+	var c: G.Config = G.game.config
+	var picks = c.picks
 	var tot_cost = 0
 	var neg_cost = 0
-	var starting_picks = G.config.number_of_race_picks.maximum_positive_picks
-	var max_neg_picks = G.config.number_of_race_picks.maximum_negative_picks
-	var evo_bonus = G.config.number_of_race_picks.evolutionary_mutation_bonus if evo_bonus_present else 0
+	var starting_picks = c.number_of_race_picks.maximum_positive_picks
+	var max_neg_picks = c.number_of_race_picks.maximum_negative_picks
+	var evo_bonus = c.number_of_race_picks.evolutionary_mutation_bonus if evo_bonus_present else 0
 	for pid in picks:
 		var option_id = race_traits.get(pid) - 1
 		if option_id != -1:
@@ -53,7 +55,7 @@ func recalc_picks():
 	$VBoxContainer/HBoxContainer/ScoreVal.text = str("%s%%" % score)
 
 func on_item_clicked(pick_id, option_id):
-	var pick: G.Pick = G.config.picks[pick_id]
+	var pick: G.Pick = G.game.config.picks[pick_id]
 	var option = pick.options[option_id]
 	var cur_option_id = race_traits.get(pick_id) - 1
 	var check_conflicts = false
@@ -77,12 +79,13 @@ func on_item_clicked(pick_id, option_id):
 		checkboxes[[pick_id, 0]].set_enabled(enabled)
 		check_conflicts = enabled
 
-	if check_conflicts and G.conflict_map.has(pick_id):
-		for pid in G.conflict_map[pick_id]:
+	var conflict_map = G.game.config.pick_conflicts_map
+	if check_conflicts and conflict_map.has(pick_id):
+		for pid in conflict_map[pick_id]:
 			print("found conflict ", pick_id, " vs ", pid)
 			if race_traits.get(pid) != 0:
 				race_traits.set(pid, 0)
-				var opts = G.config.picks[pid].options
+				var opts = G.game.config.picks[pid].options
 				for oid in range(opts.size()):
 					checkboxes[[pid, oid]].set_enabled(false)
 	recalc_picks()
@@ -97,15 +100,16 @@ func _on_back_pressed():
 	Router.pop_scene()
 
 func _on_accept_pressed():
-	G.settings.last_race = U.clone(race_traits)
-	G.game.get_current_player().race = $VBoxContainer/RaceName.text
+	G.game.settings.last_race = U.clone(race)
+	race.name = $VBoxContainer/RaceName.text
+	G.game.races[G.game.get_current_player().race] = race
 	G.save_settings()
 	Router.push_scene_choose_name()
 
 func _on_clear_pressed():
 	for cbi in checkboxes:
 		checkboxes[cbi].set_enabled(false)
-	race_traits = G.Race.new()
+	race_traits = G.RaceTraits.new()
 	for pid in U.obj_props(race_traits):
 		var v = race_traits.get(pid)
 		if v > 0:
