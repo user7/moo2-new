@@ -20,7 +20,7 @@ func _ready():
 		var txt = star_textures[s.color]
 		scene.set_texture(txt[0], txt[1])
 		scene.set_label(s.name)
-		scene.position = Vector2(s.pos) * G.map_scale_value
+		scene.position = Vector2(s.pos)
 		map.add_marker(scene)
 		scene.connect("marker_clicked", func(): _on_star_clicked(sid))
 	menu.hide()

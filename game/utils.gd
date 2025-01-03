@@ -226,4 +226,10 @@ func array(size: int, value = 0) -> Array[int]:
 	return a
 
 func _ready():
-	print("Utils ready")
+	print("Utils ready")	
+
+func cvec2i(v: int = 0):
+	return Vector2i(v, v)
+
+func cvec2(v: float  = 0):
+	return Vector2(v, v)

@@ -5,7 +5,6 @@ signal generate_universe_update(cur, tot)
 const NOID = 0
 const UINT32_MAX = 0xFFFFFFFF
 const UINT32_MOD = UINT32_MAX + 1
-const map_scale_value = 2 # TODO
 
 enum Govt {
 	FEUDAL = 0,
@@ -937,6 +936,7 @@ class Game:
 			return -1
 		return weighted_roll(w)
 
+
 	func init_new_game(prog):
 		var ctx = MapgenCtx.new()
 		ctx.max_wormholes = 4 * (settings.galaxy_size + 1)
@@ -988,7 +988,8 @@ class Game:
 			star_in_nebula_n(si, n)
 
 	func star_xy_valid(si: int) -> bool:
-		var box = Vector2i(50, 20) # star + its label approx size
+		return true # TODO
+		var box = Vector2i(20, 20) # TODO: 50, 20 originally
 		var s1: Star = stars[si]
 		for si2 in stars:
 			if si2 == si:
@@ -996,8 +997,9 @@ class Game:
 			var s2: Star = stars[si2]
 			var d = (s1.pos - s2.pos).abs()
 			var box_clash = d[0] < box[0] || d[1] < box[1]
-			var clash_800 = d.length_squared() <= 800
+			var clash_800 = d.length_squared() <= 800 # FIXME 800
 			if box_clash or clash_800:
+				# print("clash ", box_clash, " ", clash_800, " ", s1.pos, " ", s2.pos, " ", d)
 				return false
 		if is_bh(s1) and star_in_nebula(si):
 			return false
@@ -1018,7 +1020,7 @@ class Game:
 			var x
 			var y
 			while true:
-				x = (random(3 * step_y) + sector_off_y) % gt.size_x
+				x = (random(3 * step_x) + sector_off_x) % gt.size_x
 				if x >= gal_box[0] && x + gal_box[0] <= gt.size_x:
 					break
 			while true:
@@ -1026,6 +1028,7 @@ class Game:
 				if y >= gal_box[1] && y + gal_box[1] <= gt.size_y:
 					break
 			star.pos = Vector2i(x, y)
+			# print("rpos ", star.pos, " gt(", gt.size_x, ",", gt.size_y, ")")
 			var retries = 0
 			while (not star_xy_valid(si)):
 				star.pos[0] = random(gt.size_x - 2 * gal_box[0]) + gal_box[0]
@@ -1404,6 +1407,9 @@ class Game:
 		return int(ceil(sqrt(idistance_sq(a, b))))
 
 	func max_planet_pop_for_player(pid: int, plid: int):
+		return 20 # TODO
+
+	func max_colony_pop(cid: int):
 		return 20 # TODO
 
 	func update_data():
