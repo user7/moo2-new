@@ -69,7 +69,6 @@ func _process(_delta):
 	if dscale != 0:
 		update_zoom(dscale, last_mouse)
 
-
 func add_marker(marker: Control):
 	marker.scale *= 0.25
 	map_root.add_child(marker)

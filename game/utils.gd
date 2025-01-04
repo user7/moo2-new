@@ -1,6 +1,5 @@
 extends Node
 
-
 class PropInfo:
 	var name
 	var is_object = false
@@ -16,7 +15,6 @@ class PropInfo:
 			",is_object=", is_object, 
 			"}")
 
-
 class TypeInfo:
 	var type
 	var name
@@ -30,10 +28,8 @@ class TypeInfo:
 	func _to_string():
 		return str("{name=", name, ",props=", prop_list, ",prop_map=", prop_map, "}")
 
-
 var type_map = {}    # index in type_list
 var type_list = []   # array of TypeInfo
-
 
 func is_builtin_type(val) -> bool:
 	return val == null or \
@@ -70,7 +66,6 @@ func is_builtin_type(val) -> bool:
 #color array
 #max
 
-
 func register_type(type, type_name, prop_extra = {}) -> int:
 	if not type_map.has(type):
 		type_map[type] = type_list.size()
@@ -94,7 +89,6 @@ func init_registered_types():
 			prop_info.subtype = info.prop_extra.get(prop_info.name, null)
 			info.prop_list.append(prop_info)
 			info.prop_map[prop_info.name] = info.prop_list[-1]
-
 
 func clone(obj):
 	var type_info = type_list[obj.typeid]
@@ -123,7 +117,6 @@ func clone(obj):
 		ret.set(prop_info.name, copy)
 	return ret
 
-
 func obj_save(obj) -> Dictionary:
 	var ret = {}
 	#print("obj_save typeid ", obj.typeid)
@@ -146,8 +139,7 @@ func obj_save(obj) -> Dictionary:
 		ret[prop_info.name] = save
 	return ret
 
-
-func obj_load(obj, dict):
+func obj_load(obj, dict, do_print = false):
 	var prop_map = type_list[obj.typeid].prop_map
 	for key in dict:
 		var val = dict[key]
@@ -167,43 +159,42 @@ func obj_load(obj, dict):
 			if not val is Array:
 				print("obj_load skipping array key=", key, ", expected array")
 				continue
-			var tmp_arr = []
+			var prop = obj.get(prop_info.name)
+			prop.clear()
 			if prop_info.subtype:
 				for v in val:
 					var o = prop_info.subtype.new()
 					obj_load(o, v)
-					tmp_arr.push_back(o)
+					prop.push_back(o)
 			else:
-				tmp_arr = val.duplicate()
-			val = tmp_arr
+				prop.append_array(val)
+			continue
 		
-		elif prop_info.is_dictionary:
+		if prop_info.is_dictionary:
 			if not val is Dictionary:
 				print("obj_load skipping dictionary key=", key, ", expected dictionary")
 				continue
-			var tmp_dict = {}
+			var prop = obj.get(prop_info.name)
+			prop.clear()
 			if prop_info.subtype:
 				for k in val:
 					var o = prop_info.subtype.new()
 					obj_load(o, val[k])
-					tmp_dict[k] = o
+					prop[k] = o
 			else:
-				tmp_dict = val.duplicate()
-			val = tmp_dict
+				prop.merge(val, true)
+			continue
 		
 		obj.set(prop_info.name, val)
-
 
 func obj_prop_get(obj, prop_name: String):
 	if prop_name in type_list[obj.typeid].prop_map:
 		return obj.get(prop_name)
 	return null
 
-
 func obj_prop_set(obj, prop_name: String, val):
 	if prop_name in type_list[obj.typeid].prop_map:
 		obj.set(prop_name, val)
-
 
 func obj_props(obj):
 	var props = []

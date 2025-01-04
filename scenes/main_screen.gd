@@ -42,6 +42,7 @@ func _on_star_clicked(sid: int):
 	system_dialog = load("res://scenes/aux_star_dialog.tscn").instantiate()
 	system_dialog.star_id = sid
 	system_dialog.position = pos
+	G.game.print_star(sid)
 	map.add_child(system_dialog)
 
 

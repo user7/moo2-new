@@ -361,10 +361,11 @@ func save_settings():
 	FileAccess.open(settings_file, FileAccess.WRITE).store_var(U.obj_save(settings_))
 
 func save_file_name(slot):
-	return "user://save%s.gam" % slot
+	return "saves/save%s.gam" % slot
 
 func save_game(slot = 10):
 	print("save_game ", slot)
+	game.print_stats()
 	FileAccess.open(save_file_name(slot), FileAccess.WRITE) \
 		.store_var(U.obj_save(game))
 
@@ -373,8 +374,9 @@ func load_game(slot = 10) -> bool:
 	var file = FileAccess.open(save_file_name(slot), FileAccess.READ)
 	if not file:
 		return false
-	U.obj_load(tmp, file.get_var())
+	U.obj_load(tmp, file.get_var(), true)
 	game = tmp
+	game.print_stats()
 	return true
 
 func save_exists(slot = 10):
@@ -1418,9 +1420,21 @@ class Game:
 			for i in 2:
 				size[i] = maxi(s.pos[i], size[i])
 		size += Vector2i(100, 100)
-		
+
 	func player_race(plid: int):
 		return races[players[plid].race]
+
+	func print_stats():
+		print("Game")
+		print("  ", players.size(), " players")
+		print("  ", races.size(), " races")
+		print("  ", stars.size(), " stars")
+		print("  ", planets.size(), " planets")
+		print("  ", colonies.size(), " colonies")
+
+	func print_star(sid: int):
+		var s: Star = stars[sid]
+		print(" star: #", sid, " ", U.obj_save(s))
 
 func default_game():
 	var g: Game = Game.new()
