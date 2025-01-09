@@ -91,6 +91,7 @@ script = ExtResource("1_tl4ie")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 0
 texture = ExtResource("2_1re21")
 
 [node name="Caption" type="Label" parent="."]
@@ -111,6 +112,7 @@ offset_left = 5.0
 offset_top = 60.0
 offset_right = 595.0
 offset_bottom = 440.0
+mouse_filter = 0
 
 [node name="SV" type="SubViewport" parent="SVC"]
 handle_input_locally = false
