@@ -139,18 +139,20 @@ func obj_save(obj) -> Dictionary:
 		ret[prop_info.name] = save
 	return ret
 
-func obj_load(obj, dict, do_print = false):
-	var prop_map = type_list[obj.typeid].prop_map
+func obj_load(obj, dict):
+	if dict == null:
+		return null
 	for key in dict:
+		var prop_map = type_list[obj.typeid].prop_map
 		var val = dict[key]
 		if not prop_map.has(key):
-			print("obj_load skipping unknown key=", key, " val=", val)
+			print("obj_load skipping unknown key=%s val=%s" % [key, val])
 			continue
 		var prop_info: PropInfo = prop_map[key]
 
 		if prop_info.is_object:
 			if not val is Dictionary:
-				print("obj_load skipping object key=", key, ", expected dictionary")
+				print("obj_load skipping object key=%s, expected dictionary" % key)
 				continue
 			obj_load(obj.get(prop_info.name), val)
 			continue
@@ -186,6 +188,7 @@ func obj_load(obj, dict, do_print = false):
 			continue
 		
 		obj.set(prop_info.name, val)
+	return obj
 
 func obj_prop_get(obj, prop_name: String):
 	if prop_name in type_list[obj.typeid].prop_map:

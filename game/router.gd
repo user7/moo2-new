@@ -51,6 +51,13 @@ func push_scene_main_screen():
 	push_scene("res://scenes/main_screen.tscn")
 
 
+func create_save_load_dialog(script, cb, do_load):
+	var dialog = load("res://scenes/aux_save_load_dialog.tscn").instantiate()
+	dialog.do_load = do_load
+	dialog.connect("slot_selected", cb)
+	script.add_child(dialog)
+
+
 func squash_newgame_scenes():
 	if scene_stack.size() >= 2:
 		scene_stack = [scene_stack[0], scene_stack[-1]]

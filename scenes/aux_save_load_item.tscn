@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct4ruiw5f6c12"]
+
+[ext_resource type="Theme" uid="uid://cpsrv571f6j4p" path="res://themes/theme_tiny.tres" id="1_4chci"]
+[ext_resource type="StyleBox" uid="uid://c0j83aavnbp6f" path="res://themes/blacklinebox.tres" id="2_fl2r0"]
+[ext_resource type="Theme" uid="uid://hgcwcppc6dyh" path="res://themes/theme_small_grey.tres" id="3_ol3la"]
+[ext_resource type="Texture2D" uid="uid://f2wa0v6ptxtk" path="res://img/misc/human.png" id="4_qg1uf"]
+[ext_resource type="Texture2D" uid="uid://bnjavt720702l" path="res://img/misc/human3.png" id="5_srbsc"]
+
+[node name="Save1" type="Panel"]
+custom_minimum_size = Vector2(350, 65)
+theme = ExtResource("1_4chci")
+theme_override_styles/panel = ExtResource("2_fl2r0")
+
+[node name="Title" type="LineEdit" parent="."]
+layout_mode = 0
+offset_right = 350.0
+offset_bottom = 36.0
+theme = ExtResource("3_ol3la")
+text = "<empty slot>"
+
+[node name="Stardate" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 39.0
+offset_right = 135.0
+offset_bottom = 59.0
+text = "Stardate:3500.1
+"
+
+[node name="Date" type="Label" parent="."]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 39.0
+offset_right = 292.0
+offset_bottom = 59.0
+text = "Mar 3, 2024 21:34"
+
+[node name="GameType1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(330, 50)
+scale = Vector2(0.415, 0.415)
+texture = ExtResource("4_qg1uf")
+
+[node name="GameType2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(330, 50)
+scale = Vector2(0.41, 0.41)
+texture = ExtResource("5_srbsc")

@@ -15,8 +15,7 @@ func _ready():
 
 
 func _on_continue_button_pressed():
-	if G.load_game():
-		Router.push_scene_main_screen()
+	on_load(10)
 
 
 func _on_quit_game_button_pressed():
@@ -25,3 +24,12 @@ func _on_quit_game_button_pressed():
 
 func _on_new_game_button_pressed():
 	Router.push_scene_new_game()
+
+
+func _on_load_game_button_pressed():
+	Router.create_save_load_dialog(self, func(n, title): on_load(n), true)
+
+
+func on_load(n):
+	if G.load_game(n):
+		Router.push_scene_main_screen()

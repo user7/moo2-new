@@ -348,6 +348,21 @@ class Config:
 		wandering_monster_design = ShipDesign, # off MonsterType
 	})
 
+
+enum {
+	GAME_TYPE_SINGLE_PLAYER,
+	GAME_TYPE_HOTSEAT,
+	GAME_TYPE_NETWORK,
+}
+
+class SaveFileMeta:
+	var title: String = ""
+	var stardate: String = ""
+	var date: String = ""
+	var game_type: int = GAME_TYPE_SINGLE_PLAYER
+	static var typeid = U.register_type(SaveFileMeta, "SaveFileMeta")
+
+
 func load_settings():
 	var tmp = Settings.new()
 	var file = FileAccess.open(settings_file, FileAccess.READ)
@@ -363,19 +378,52 @@ func save_settings():
 func save_file_name(slot):
 	return "saves/save%s.gam" % slot
 
-func save_game(slot = 10):
-	print("save_game ", slot)
-	game.print_stats()
-	FileAccess.open(save_file_name(slot), FileAccess.WRITE) \
-		.store_var(U.obj_save(game))
+func format_stardate(stardate: int) -> String:
+	return "%d.%d" % [3500 + stardate / 10, stardate % 10]
+
+func format_current_date() -> String:
+	var t = Time.get_datetime_dict_from_system() # Get current time in UTC	
+	var date = "%d.%02d.%02d" % [t["year"], t["month"], t["day"]] 
+	var time = "%02d:%02d" % [t["hour"], t["minute"]]
+	return "%s %s" % [date, time]
+
+func save_game(slot = 10, text = ""):
+	var g: Game = game
+	var meta = SaveFileMeta.new()
+	meta.title = text
+	var pid = game.cur_player_id
+	var n_colonies = 0
+	if text == "":
+		for cid in g.colonies:
+			if g.colonies[cid].player == pid:
+				n_colonies += 1
+	var boss_name = g.players[pid].name
+	var race_name = g.races[g.players[pid].race].name
+	meta.title = "%s, %s, %d colonies" % [boss_name, race_name, n_colonies]
+	meta.stardate = format_stardate(g.stardate)
+	meta.date = format_current_date()
+	var file = FileAccess.open(save_file_name(slot), FileAccess.WRITE)
+	file.store_var(U.obj_save(meta))
+	file.store_var(U.obj_save(g))
+	file.close()
+
+func load_game_meta(slot = 10):
+	return load_game_data(slot, true)
+	
+func load_game_data(slot = 10, load_meta = false):
+	var file = FileAccess.open(save_file_name(slot), FileAccess.READ)
+	if file == null:
+		return null
+	var meta_var = file.get_var()
+	if load_meta:
+		return U.obj_load(SaveFileMeta.new(), meta_var)
+	return U.obj_load(default_game(), file.get_var())
 
 func load_game(slot = 10) -> bool:
-	var tmp = default_game()
-	var file = FileAccess.open(save_file_name(slot), FileAccess.READ)
-	if not file:
+	var tmp = load_game_data(slot)
+	if tmp == null:
 		return false
-	U.obj_load(tmp, file.get_var(), true)
-	game = tmp
+	game = tmp 
 	game.print_stats()
 	return true
 
@@ -702,7 +750,7 @@ class Game:
 	var rng_seed: int = 0
 	var size: Vector2i = Vector2i.ZERO
 	var nebulas: Array[Nebula] = []
-	var stardate: int
+	var stardate: int = 0
 	static var typeid = U.register_type(Game, "Game", {
 		races = Race,
 		players = Player,
@@ -1463,7 +1511,7 @@ func generate_test_game():
 
 	# human sol
 	var sid = g.add_star()
-	var star: G.Star = g.stars[sid]
+	var star: Star = g.stars[sid]
 	star.name = "Sol"
 	star.color = StarColor.YELLOW
 	star.pos = Vector2i(100, 100)
@@ -1508,9 +1556,9 @@ func generate_test_game():
 		var pid = g.add_planet()
 		var planet: G.Planet = g.planets[pid]
 		planet.star = sid
-		planet.size = {0: G.PlanetSize.TINY, 2: G.PlanetSize.LARGE}.get(i, 0)
-		planet.minerals = {0: G.Minerals.RICH, 2: G.Minerals.POOR}.get(i, 0)
-		planet.kind = {3: G.PlanetKind.ASTEROID_BELT, 4: G.PlanetKind.GAS_GIANT}.get(i, G.PlanetKind.PLANET)
+		planet.size = {0: PlanetSize.TINY, 2: PlanetSize.LARGE}.get(i, 0)
+		planet.minerals = {0: Minerals.RICH, 2: Minerals.POOR}.get(i, 0)
+		planet.kind = {3: PlanetKind.ASTEROID_BELT, 4: PlanetKind.GAS_GIANT}.get(i, G.PlanetKind.PLANET)
 		planet.climate = G.Climate.RADIATED if i == 0 else G.Climate.TERRAN
 		planet.gravity = G.Gravity.LOWG if i == 0 else G.Gravity.NORMALG
 		star.orbits[i] = pid

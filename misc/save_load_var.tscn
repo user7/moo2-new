@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkg0qql8yxub8"]
+
+[ext_resource type="Script" path="res://misc/save_load_var.gd" id="1_jun4a"]
+
+[node name="SaveLoadVar" type="Node2D"]
+script = ExtResource("1_jun4a")

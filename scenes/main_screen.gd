@@ -4,7 +4,7 @@ extends Node
 @onready var menu = $GameMenu
 
 var star_textures = []
-var system_dialog = null
+var star_dialog = null
 
 func _ready():
 	Router.squash_newgame_scenes()
@@ -36,15 +36,45 @@ func _on_return_pressed():
 
 func _on_star_clicked(sid: int):
 	var pos = Vector2.ZERO
-	if system_dialog != null:
-		pos = system_dialog.position
-		system_dialog.queue_free()
-	system_dialog = load("res://scenes/aux_star_dialog.tscn").instantiate()
-	system_dialog.star_id = sid
-	system_dialog.position = pos
+	if star_dialog != null:
+		pos = star_dialog.position
+		star_dialog.queue_free()
+	star_dialog = load("res://scenes/aux_star_dialog.tscn").instantiate()
+	star_dialog.star_id = sid
+	star_dialog.position = pos
 	G.game.print_star(sid)
-	map.add_child(system_dialog)
+	map.add_child(star_dialog)
 
 
 func _on_quit_pressed():
 	Router.pop_scene()
+
+
+func save_load(do_load: bool = false):
+	Router.create_save_load_dialog(self, func(n, title): _on_save_load(n, title, do_load), do_load)
+
+
+func _on_save_load(n: int, title: String, do_load: bool):
+	if do_load:
+		G.load_game(n)
+		Router.pop_scene()
+		Router.push_scene_main_screen()
+		menu.hide()
+		# TODO update main screen
+	else:
+		G.save_game(n, title)
+		menu.hide()
+		# close menu
+
+
+func _on_save_pressed():
+	save_load(false)
+
+
+func _on_load_pressed():
+	save_load(true)
+
+
+func _on_game_menu_gui_input(event: InputEvent):
+	if event is InputEventMouseButton and event.is_pressed():
+		menu.hide()
